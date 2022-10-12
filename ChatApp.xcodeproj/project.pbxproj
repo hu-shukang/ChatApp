@@ -7,18 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75985F7828F6BFE00047287A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75985F7728F6BFE00047287A /* Extensions.swift */; };
+		75BFE9C028F6DE1900BB5A3A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFE9BF28F6DE1900BB5A3A /* CustomTextField.swift */; };
+		75BFE9C328F6E23500BB5A3A /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFE9C228F6E23500BB5A3A /* LargeButton.swift */; };
 		75EE702E28F581E700246F35 /* ChatAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE702D28F581E700246F35 /* ChatAppApp.swift */; };
 		75EE703028F581E700246F35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE702F28F581E700246F35 /* ContentView.swift */; };
 		75EE703228F581E900246F35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75EE703128F581E900246F35 /* Assets.xcassets */; };
 		75EE703528F581E900246F35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75EE703428F581E900246F35 /* Preview Assets.xcassets */; };
+		75EE704228F5830C00246F35 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE704128F5830C00246F35 /* LoginPage.swift */; };
+		75EE704428F5832400246F35 /* RegistrationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE704328F5832400246F35 /* RegistrationPage.swift */; };
+		75EE704628F585B200246F35 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE704528F585B200246F35 /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		75985F7728F6BFE00047287A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		75BFE9BF28F6DE1900BB5A3A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		75BFE9C228F6E23500BB5A3A /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		75EE702A28F581E700246F35 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75EE702D28F581E700246F35 /* ChatAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppApp.swift; sourceTree = "<group>"; };
 		75EE702F28F581E700246F35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		75EE703128F581E900246F35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75EE703428F581E900246F35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		75EE704128F5830C00246F35 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		75EE704328F5832400246F35 /* RegistrationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPage.swift; sourceTree = "<group>"; };
+		75EE704528F585B200246F35 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +44,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75BFE9C128F6E08200BB5A3A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				75BFE9BF28F6DE1900BB5A3A /* CustomTextField.swift */,
+				75BFE9C228F6E23500BB5A3A /* LargeButton.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		75EE702128F581E700246F35 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +72,12 @@
 		75EE702C28F581E700246F35 /* ChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				75BFE9C128F6E08200BB5A3A /* Component */,
+				75EE703F28F5829700246F35 /* Model */,
+				75EE703E28F5829500246F35 /* View */,
+				75EE703D28F5829100246F35 /* ViewModel */,
+				75EE703C28F5828900246F35 /* API */,
+				75EE703B28F5827D00246F35 /* Util */,
 				75EE702D28F581E700246F35 /* ChatAppApp.swift */,
 				75EE702F28F581E700246F35 /* ContentView.swift */,
 				75EE703128F581E900246F35 /* Assets.xcassets */,
@@ -65,6 +92,53 @@
 				75EE703428F581E900246F35 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		75EE703B28F5827D00246F35 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				75985F7728F6BFE00047287A /* Extensions.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		75EE703C28F5828900246F35 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		75EE703D28F5829100246F35 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				75EE704528F585B200246F35 /* Router.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		75EE703E28F5829500246F35 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				75EE704028F582F300246F35 /* Authorication */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		75EE703F28F5829700246F35 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		75EE704028F582F300246F35 /* Authorication */ = {
+			isa = PBXGroup;
+			children = (
+				75EE704128F5830C00246F35 /* LoginPage.swift */,
+				75EE704328F5832400246F35 /* RegistrationPage.swift */,
+			);
+			path = Authorication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +211,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75BFE9C028F6DE1900BB5A3A /* CustomTextField.swift in Sources */,
 				75EE703028F581E700246F35 /* ContentView.swift in Sources */,
+				75985F7828F6BFE00047287A /* Extensions.swift in Sources */,
+				75BFE9C328F6E23500BB5A3A /* LargeButton.swift in Sources */,
+				75EE704428F5832400246F35 /* RegistrationPage.swift in Sources */,
+				75EE704628F585B200246F35 /* Router.swift in Sources */,
+				75EE704228F5830C00246F35 /* LoginPage.swift in Sources */,
 				75EE702E28F581E700246F35 /* ChatAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
