@@ -9,11 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var router = Router()
+    @StateObject var mainTabVM = MainTabViewModel()
     
     var body: some View {
-        NavigationStack(path: $router.path) {
-            LoginPage()
+//        NavigationStack(path: $router.path) {
+//            LoginPage()
+//                .environmentObject(router)
+//        }
+        NavigationStack(path: $router.mainPath) {
+            MainTabPage()
                 .environmentObject(router)
+                .environmentObject(mainTabVM)
         }
     }
 }

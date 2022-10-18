@@ -13,4 +13,6 @@ class Router: ObservableObject {
     var SIGN_IN = "SIGN_IN"
     
     @Published var path = NavigationPath()
+    
+    @Published var mainPath = NavigationPath()
 }

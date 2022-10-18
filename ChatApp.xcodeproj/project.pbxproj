@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		75985F7828F6BFE00047287A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75985F7728F6BFE00047287A /* Extensions.swift */; };
+		75B0810D28FEB3350079A504 /* MainTabPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0810C28FEB3350079A504 /* MainTabPage.swift */; };
+		75B0811228FEB53F0079A504 /* ChannelsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811128FEB53F0079A504 /* ChannelsPage.swift */; };
+		75B0811428FEB5540079A504 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811328FEB5540079A504 /* SettingsPage.swift */; };
+		75B0811628FEB56F0079A504 /* ChatsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811528FEB56F0079A504 /* ChatsPage.swift */; };
+		75B0811928FEB59A0079A504 /* ConversationsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811828FEB59A0079A504 /* ConversationsPage.swift */; };
+		75B0811B28FEB7DC0079A504 /* MainTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811A28FEB7DC0079A504 /* MainTabViewModel.swift */; };
+		75B0811D28FEC0E70079A504 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811C28FEC0E70079A504 /* SettingsHeader.swift */; };
+		75B0811F28FEC7930079A504 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811E28FEC7930079A504 /* SettingsCell.swift */; };
+		75B0812128FEC9490079A504 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0812028FEC9490079A504 /* SettingsViewModel.swift */; };
 		75BFE9C028F6DE1900BB5A3A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFE9BF28F6DE1900BB5A3A /* CustomTextField.swift */; };
 		75BFE9C328F6E23500BB5A3A /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFE9C228F6E23500BB5A3A /* LargeButton.swift */; };
 		75EE702E28F581E700246F35 /* ChatAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE702D28F581E700246F35 /* ChatAppApp.swift */; };
@@ -21,6 +30,15 @@
 
 /* Begin PBXFileReference section */
 		75985F7728F6BFE00047287A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		75B0810C28FEB3350079A504 /* MainTabPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabPage.swift; sourceTree = "<group>"; };
+		75B0811128FEB53F0079A504 /* ChannelsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsPage.swift; sourceTree = "<group>"; };
+		75B0811328FEB5540079A504 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
+		75B0811528FEB56F0079A504 /* ChatsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsPage.swift; sourceTree = "<group>"; };
+		75B0811828FEB59A0079A504 /* ConversationsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsPage.swift; sourceTree = "<group>"; };
+		75B0811A28FEB7DC0079A504 /* MainTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewModel.swift; sourceTree = "<group>"; };
+		75B0811C28FEC0E70079A504 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
+		75B0811E28FEC7930079A504 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		75B0812028FEC9490079A504 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		75BFE9BF28F6DE1900BB5A3A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		75BFE9C228F6E23500BB5A3A /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		75EE702A28F581E700246F35 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +62,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75B0810B28FEB3250079A504 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				75B0810C28FEB3350079A504 /* MainTabPage.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		75B0810E28FEB5210079A504 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				75B0811128FEB53F0079A504 /* ChannelsPage.swift */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		75B0810F28FEB5290079A504 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				75B0811328FEB5540079A504 /* SettingsPage.swift */,
+				75B0811C28FEC0E70079A504 /* SettingsHeader.swift */,
+				75B0811E28FEC7930079A504 /* SettingsCell.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		75B0811028FEB5300079A504 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				75B0811528FEB56F0079A504 /* ChatsPage.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		75B0811728FEB57D0079A504 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				75B0811828FEB59A0079A504 /* ConversationsPage.swift */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
 		75BFE9C128F6E08200BB5A3A /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				75EE704528F585B200246F35 /* Router.swift */,
+				75B0811A28FEB7DC0079A504 /* MainTabViewModel.swift */,
+				75B0812028FEC9490079A504 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -120,6 +182,11 @@
 		75EE703E28F5829500246F35 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				75B0811728FEB57D0079A504 /* Conversations */,
+				75B0811028FEB5300079A504 /* Chats */,
+				75B0810F28FEB5290079A504 /* Settings */,
+				75B0810E28FEB5210079A504 /* Channels */,
+				75B0810B28FEB3250079A504 /* Main */,
 				75EE704028F582F300246F35 /* Authorication */,
 			);
 			path = View;
@@ -213,12 +280,21 @@
 			files = (
 				75BFE9C028F6DE1900BB5A3A /* CustomTextField.swift in Sources */,
 				75EE703028F581E700246F35 /* ContentView.swift in Sources */,
+				75B0811628FEB56F0079A504 /* ChatsPage.swift in Sources */,
 				75985F7828F6BFE00047287A /* Extensions.swift in Sources */,
+				75B0810D28FEB3350079A504 /* MainTabPage.swift in Sources */,
 				75BFE9C328F6E23500BB5A3A /* LargeButton.swift in Sources */,
+				75B0811428FEB5540079A504 /* SettingsPage.swift in Sources */,
 				75EE704428F5832400246F35 /* RegistrationPage.swift in Sources */,
+				75B0812128FEC9490079A504 /* SettingsViewModel.swift in Sources */,
+				75B0811228FEB53F0079A504 /* ChannelsPage.swift in Sources */,
+				75B0811928FEB59A0079A504 /* ConversationsPage.swift in Sources */,
 				75EE704628F585B200246F35 /* Router.swift in Sources */,
 				75EE704228F5830C00246F35 /* LoginPage.swift in Sources */,
+				75B0811D28FEC0E70079A504 /* SettingsHeader.swift in Sources */,
+				75B0811F28FEC7930079A504 /* SettingsCell.swift in Sources */,
 				75EE702E28F581E700246F35 /* ChatAppApp.swift in Sources */,
+				75B0811B28FEB7DC0079A504 /* MainTabViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
