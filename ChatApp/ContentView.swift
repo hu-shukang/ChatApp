@@ -16,9 +16,8 @@ struct ContentView: View {
 //            LoginPage()
 //                .environmentObject(router)
 //        }
-        NavigationStack(path: $router.mainPath) {
+        NavigationStack {
             MainTabPage()
-                .environmentObject(router)
                 .environmentObject(mainTabVM)
         }
     }

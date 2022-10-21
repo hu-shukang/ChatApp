@@ -12,7 +12,13 @@ struct SettingsPage: View {
     
     var body: some View {
         VStack(spacing: 32) {
-            SettingsHeader()
+            NavigationLink(destination: {
+                EditProfilePage()
+                    .environmentObject(settingsVM)
+            }, label: {
+                SettingsHeader()
+                    .environmentObject(settingsVM)
+            })
             
             VStack(spacing: 0) {
                 ForEach(Array(settingsVM.settingsCellList.enumerated()), id: \.element) { index, cell in
@@ -29,7 +35,15 @@ struct SettingsPage: View {
             .background(.white)
         
             
-            Text("Logout")
+            Button(action: {}, label: {
+                Text("Logout")
+                    .foregroundColor(.red)
+                    .font(.system(size: 16))
+                    .fontWeight(.semibold)
+                    .frame(height: 50)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+            })
             
             Spacer()
         }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		751DC73B29000CE3001A1447 /* EditProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DC73A29000CE3001A1447 /* EditProfilePage.swift */; };
+		751DC73D29000E5E001A1447 /* Avator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DC73C29000E5E001A1447 /* Avator.swift */; };
+		751DC73F2900162F001A1447 /* StatusSelectorPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DC73E2900162F001A1447 /* StatusSelectorPage.swift */; };
+		751DC74129001AF3001A1447 /* CategoryTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DC74029001AF3001A1447 /* CategoryTitle.swift */; };
+		7597E678290298B0003F5B41 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597E677290298B0003F5B41 /* ImagePicker.swift */; };
 		75985F7828F6BFE00047287A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75985F7728F6BFE00047287A /* Extensions.swift */; };
 		75B0810D28FEB3350079A504 /* MainTabPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0810C28FEB3350079A504 /* MainTabPage.swift */; };
 		75B0811228FEB53F0079A504 /* ChannelsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811128FEB53F0079A504 /* ChannelsPage.swift */; };
@@ -29,6 +34,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		751DC73A29000CE3001A1447 /* EditProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePage.swift; sourceTree = "<group>"; };
+		751DC73C29000E5E001A1447 /* Avator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avator.swift; sourceTree = "<group>"; };
+		751DC73E2900162F001A1447 /* StatusSelectorPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusSelectorPage.swift; sourceTree = "<group>"; };
+		751DC74029001AF3001A1447 /* CategoryTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTitle.swift; sourceTree = "<group>"; };
+		7597E677290298B0003F5B41 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		75985F7728F6BFE00047287A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		75B0810C28FEB3350079A504 /* MainTabPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabPage.swift; sourceTree = "<group>"; };
 		75B0811128FEB53F0079A504 /* ChannelsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsPage.swift; sourceTree = "<group>"; };
@@ -82,8 +92,10 @@
 			isa = PBXGroup;
 			children = (
 				75B0811328FEB5540079A504 /* SettingsPage.swift */,
-				75B0811C28FEC0E70079A504 /* SettingsHeader.swift */,
+				751DC73A29000CE3001A1447 /* EditProfilePage.swift */,
+				751DC73E2900162F001A1447 /* StatusSelectorPage.swift */,
 				75B0811E28FEC7930079A504 /* SettingsCell.swift */,
+				75B0811C28FEC0E70079A504 /* SettingsHeader.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -109,6 +121,8 @@
 			children = (
 				75BFE9BF28F6DE1900BB5A3A /* CustomTextField.swift */,
 				75BFE9C228F6E23500BB5A3A /* LargeButton.swift */,
+				751DC73C29000E5E001A1447 /* Avator.swift */,
+				751DC74029001AF3001A1447 /* CategoryTitle.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -158,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				75985F7728F6BFE00047287A /* Extensions.swift */,
+				7597E677290298B0003F5B41 /* ImagePicker.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -282,7 +297,10 @@
 				75EE703028F581E700246F35 /* ContentView.swift in Sources */,
 				75B0811628FEB56F0079A504 /* ChatsPage.swift in Sources */,
 				75985F7828F6BFE00047287A /* Extensions.swift in Sources */,
+				751DC74129001AF3001A1447 /* CategoryTitle.swift in Sources */,
 				75B0810D28FEB3350079A504 /* MainTabPage.swift in Sources */,
+				751DC73D29000E5E001A1447 /* Avator.swift in Sources */,
+				7597E678290298B0003F5B41 /* ImagePicker.swift in Sources */,
 				75BFE9C328F6E23500BB5A3A /* LargeButton.swift in Sources */,
 				75B0811428FEB5540079A504 /* SettingsPage.swift in Sources */,
 				75EE704428F5832400246F35 /* RegistrationPage.swift in Sources */,
@@ -290,8 +308,10 @@
 				75B0811228FEB53F0079A504 /* ChannelsPage.swift in Sources */,
 				75B0811928FEB59A0079A504 /* ConversationsPage.swift in Sources */,
 				75EE704628F585B200246F35 /* Router.swift in Sources */,
+				751DC73F2900162F001A1447 /* StatusSelectorPage.swift in Sources */,
 				75EE704228F5830C00246F35 /* LoginPage.swift in Sources */,
 				75B0811D28FEC0E70079A504 /* SettingsHeader.swift in Sources */,
+				751DC73B29000CE3001A1447 /* EditProfilePage.swift in Sources */,
 				75B0811F28FEC7930079A504 /* SettingsCell.swift in Sources */,
 				75EE702E28F581E700246F35 /* ChatAppApp.swift in Sources */,
 				75B0811B28FEB7DC0079A504 /* MainTabViewModel.swift in Sources */,

@@ -8,33 +8,33 @@
 import SwiftUI
 
 struct SettingsHeader: View {
+    @EnvironmentObject var settingsVM: SettingsViewModel
     var body: some View {
         HStack {
-            Image(systemName: "person")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 64, height: 64)
-                .clipShape(Circle())
-                .padding(.leading)
+            Avator(image: Image("avator"))
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("Eddie Brock")
+                Text(settingsVM.username)
                     .font(.system(size: 18))
+                    .foregroundColor(.black)
                 
-                Text("Available")
+                Text(settingsVM.currentStatus)
                     .foregroundColor(.customDarkGray)
                     .font(.system(size: 14))
             }
             
             Spacer()
         }
+        .padding(.leading)
         .frame(height: 80)
         .background(Color.white)
     }
 }
 
 struct SettingsHeader_Previews: PreviewProvider {
+    @StateObject static var settingsVM = SettingsViewModel()
     static var previews: some View {
         SettingsHeader()
+            .environmentObject(settingsVM)
     }
 }
