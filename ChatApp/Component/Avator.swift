@@ -9,12 +9,13 @@ import SwiftUI
 
 struct Avator: View {
     var image: Image
+    var size: CGFloat = 64
     
     var body: some View {
         image
             .resizable()
             .scaledToFill()
-            .frame(width: 64, height: 64)
+            .frame(width: size, height: size)
             .clipShape(Circle())
     }
 }
