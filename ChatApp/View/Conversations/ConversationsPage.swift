@@ -19,7 +19,11 @@ struct ConversationsPage: View {
             ScrollView {
                 VStack {
                     ForEach((0 ... 10), id: \.self) { _ in
-                        ConversationCell()
+                        NavigationLink(destination: {
+                            ChatPage()
+                        }, label: {
+                            ConversationCell()
+                        })
                     }
                 }
             }
@@ -47,6 +51,8 @@ struct ConversationsPage: View {
 
 struct ConversationsPage_Previews: PreviewProvider {
     static var previews: some View {
-        ConversationsPage()
+        NavigationStack {
+            ConversationsPage()
+        }
     }
 }

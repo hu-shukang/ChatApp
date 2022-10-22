@@ -8,8 +8,31 @@
 import SwiftUI
 
 struct ChatPage: View {
+    @StateObject var chatVM = ChatViewModel()
+    @FocusState var isEditing: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            // MARK: - messages
+            ScrollView {
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach(chatVM.messages) { message in
+                        ChatMessage(message: message)
+                            .environmentObject(chatVM)
+                    }
+                }
+            }
+            .onTapGesture {
+                isEditing = false
+            }
+            
+            // MARK: - input
+            MessageInput(isEditing: $isEditing)
+                .environmentObject(chatVM)
+            
+        }
+        .navigationTitle("UserName")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

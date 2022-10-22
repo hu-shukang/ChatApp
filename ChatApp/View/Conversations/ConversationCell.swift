@@ -16,9 +16,11 @@ struct ConversationCell: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Eddie Brock")
                         .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.customBlack)
                     
                     Text("Hello world!!")
                         .font(.system(size: 14))
+                        .foregroundColor(.customDarkGray)
                 }
                 
                 Spacer()
