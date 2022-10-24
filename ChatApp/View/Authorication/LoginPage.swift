@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct LoginPage: View {
-    @State private var email = ""
-    @State private var password = ""
     @EnvironmentObject var router: Router;
+    @EnvironmentObject var authVM: AuthViewModel;
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -25,8 +24,8 @@ struct LoginPage: View {
                 .foregroundColor(.customBlue)
             
             VStack(spacing: 32) {
-                CustomTextField(text: $email, icon: "envelope", placeholder: "Email")
-                CustomTextField(text: $password, icon: "lock", placeholder: "Password", isSecure: true)
+                CustomTextField(text: $authVM.email, icon: "envelope", placeholder: "Email")
+                CustomTextField(text: $authVM.password, icon: "lock", placeholder: "Password", isSecure: true)
                 
                 HStack {
                     Spacer()
@@ -39,7 +38,7 @@ struct LoginPage: View {
                 }
                 
                 LargeButton(text: "Sign In", action: {
-                    
+                    authVM.login()
                 })
             }
             .padding([.horizontal, .top], 32)
@@ -67,6 +66,7 @@ struct LoginPage: View {
             if destination == router.SIGN_UP {
                 RegistrationPage()
                     .environmentObject(router)
+                    .environmentObject(authVM)
             }
         }
     }

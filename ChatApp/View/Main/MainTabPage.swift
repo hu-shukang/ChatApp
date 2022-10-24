@@ -8,24 +8,28 @@
 import SwiftUI
 
 struct MainTabPage: View {
-    @EnvironmentObject var mainTabVM: MainTabViewModel
+    @StateObject var mainTabVM = MainTabViewModel()
+    @EnvironmentObject var authVM: AuthViewModel
     
     var body: some View {
         // MARK: - Tab View
         TabView(selection: $mainTabVM.selectedTab) {
             ConversationsPage()
+                .environmentObject(authVM)
                 .tabItem {
                     Image(systemName: "bubble.left")
                 }
                 .tag("conversations")
             
             ChannelsPage()
+                .environmentObject(authVM)
                 .tabItem {
                     Image(systemName: "bubble.left.and.bubble.right")
                 }
                 .tag("channels")
             
             SettingsPage()
+                .environmentObject(authVM)
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                 }
@@ -39,7 +43,7 @@ struct MainTabPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             MainTabPage()
-                .environmentObject(MainTabViewModel())
+                .environmentObject(AuthViewModel())
         }
     }
 }

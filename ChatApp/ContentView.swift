@@ -10,15 +10,19 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var router = Router()
     @StateObject var mainTabVM = MainTabViewModel()
+    @StateObject var authVM = AuthViewModel()
     
     var body: some View {
-//        NavigationStack(path: $router.path) {
-//            LoginPage()
-//                .environmentObject(router)
-//        }
-        NavigationStack {
-            MainTabPage()
-                .environmentObject(mainTabVM)
+        NavigationStack(path: $router.path) {
+            Group {
+                if authVM.userSession == nil {
+                    LoginPage()
+                } else {
+                    MainTabPage()
+                }
+            }
+            .environmentObject(router)
+            .environmentObject(authVM)
         }
     }
 }

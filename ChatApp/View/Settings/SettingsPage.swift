@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsPage: View {
     @StateObject var settingsVM = SettingsViewModel()
+    @EnvironmentObject var authVM: AuthViewModel
     
     var body: some View {
         VStack(spacing: 32) {
@@ -35,7 +36,7 @@ struct SettingsPage: View {
             .background(.white)
         
             
-            Button(action: {}, label: {
+            Button(action: authVM.logout, label: {
                 Text("Logout")
                     .foregroundColor(.red)
                     .font(.system(size: 16))
@@ -60,6 +61,7 @@ struct SettingsPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             SettingsPage()
+                .environmentObject(AuthViewModel())
                 .navigationTitle("Settings")
         }
     }

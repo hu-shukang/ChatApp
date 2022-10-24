@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct RegistrationPage: View {
-    @State private var email = ""
-    @State private var username = ""
-    @State private var fullname = ""
-    @State private var password = ""
+//    @State private var email = ""
+//    @State private var username = ""
+//    @State private var fullname = ""
+//    @State private var password = ""
     @EnvironmentObject var router: Router;
+    @EnvironmentObject var authVM: AuthViewModel;
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -27,13 +28,13 @@ struct RegistrationPage: View {
                 .foregroundColor(.customBlue)
             
             VStack(spacing: 32) {
-                CustomTextField(text: $email, icon: "envelope", placeholder: "Email")
-                CustomTextField(text: $username, icon: "envelope", placeholder: "User Name")
-                CustomTextField(text: $email, icon: "envelope", placeholder: "Full Name")
-                CustomTextField(text: $password, icon: "lock", placeholder: "Password", isSecure: true)
+                CustomTextField(text: $authVM.email, icon: "envelope", placeholder: "Email")
+                CustomTextField(text: $authVM.username, icon: "person", placeholder: "User Name")
+                CustomTextField(text: $authVM.fullname, icon: "person", placeholder: "Full Name")
+                CustomTextField(text: $authVM.password, icon: "lock", placeholder: "Password", isSecure: true)
                 
                 LargeButton(text: "Sign Up", action: {
-                    
+                    authVM.register()
                 })
             }
             .padding([.horizontal, .top], 32)
@@ -60,6 +61,11 @@ struct RegistrationPage: View {
         .padding()
         .padding(.top, 30)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .navigationDestination(isPresented: $authVM.didAuthUser) {
+            ProfilePhotoSelectorPage()
+                .environmentObject(router)
+                .environmentObject(authVM)
+        }
     }
 }
 
@@ -67,5 +73,6 @@ struct RegistrationPage_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationPage()
             .environmentObject(Router())
+            .environmentObject(AuthViewModel())
     }
 }
