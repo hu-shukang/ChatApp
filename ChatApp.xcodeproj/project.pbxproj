@@ -33,7 +33,6 @@
 		75D3719929036A5000DBB4CE /* MessageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3719829036A5000DBB4CE /* MessageInput.swift */; };
 		75D3719B29036B8C00DBB4CE /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3719A29036B8C00DBB4CE /* ChatViewModel.swift */; };
 		75D3719D29036EBC00DBB4CE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D3719C29036EBC00DBB4CE /* Message.swift */; };
-		75D3719F29038CF900DBB4CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75D3719E29038CF900DBB4CE /* GoogleService-Info.plist */; };
 		75D371A229038FB900DBB4CE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 75D371A129038FB900DBB4CE /* FirebaseAuth */; };
 		75D371A429038FB900DBB4CE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 75D371A329038FB900DBB4CE /* FirebaseFirestore */; };
 		75D371A629038FB900DBB4CE /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 75D371A529038FB900DBB4CE /* FirebaseFunctions */; };
@@ -76,7 +75,6 @@
 		75D3719829036A5000DBB4CE /* MessageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInput.swift; sourceTree = "<group>"; };
 		75D3719A29036B8C00DBB4CE /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		75D3719C29036EBC00DBB4CE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		75D3719E29038CF900DBB4CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75D371A9290392F300DBB4CE /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		75D371AB2903B1E500DBB4CE /* ProfilePhotoSelectorPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorPage.swift; sourceTree = "<group>"; };
 		75EE702A28F581E700246F35 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,7 +191,6 @@
 				75EE703B28F5827D00246F35 /* Util */,
 				75EE702D28F581E700246F35 /* ChatAppApp.swift */,
 				75EE702F28F581E700246F35 /* ContentView.swift */,
-				75D3719E29038CF900DBB4CE /* GoogleService-Info.plist */,
 				75EE703128F581E900246F35 /* Assets.xcassets */,
 				75EE703328F581E900246F35 /* Preview Content */,
 			);
@@ -336,7 +333,6 @@
 			files = (
 				75EE703528F581E900246F35 /* Preview Assets.xcassets in Resources */,
 				75EE703228F581E900246F35 /* Assets.xcassets in Resources */,
-				75D3719F29038CF900DBB4CE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
