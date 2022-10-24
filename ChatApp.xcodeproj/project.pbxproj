@@ -26,6 +26,7 @@
 		75B0811D28FEC0E70079A504 /* SettingsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811C28FEC0E70079A504 /* SettingsHeader.swift */; };
 		75B0811F28FEC7930079A504 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0811E28FEC7930079A504 /* SettingsCell.swift */; };
 		75B0812128FEC9490079A504 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0812028FEC9490079A504 /* SettingsViewModel.swift */; };
+		75B398042906BD08006F84FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75B398032906BD08006F84FE /* GoogleService-Info.plist */; };
 		75BFE9C028F6DE1900BB5A3A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFE9BF28F6DE1900BB5A3A /* CustomTextField.swift */; };
 		75BFE9C328F6E23500BB5A3A /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFE9C228F6E23500BB5A3A /* LargeButton.swift */; };
 		75D37195290363F800DBB4CE /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D37194290363F800DBB4CE /* ChatBubble.swift */; };
@@ -68,6 +69,7 @@
 		75B0811C28FEC0E70079A504 /* SettingsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeader.swift; sourceTree = "<group>"; };
 		75B0811E28FEC7930079A504 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		75B0812028FEC9490079A504 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		75B398032906BD08006F84FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75BFE9BF28F6DE1900BB5A3A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		75BFE9C228F6E23500BB5A3A /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		75D37194290363F800DBB4CE /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				75EE703B28F5827D00246F35 /* Util */,
 				75EE702D28F581E700246F35 /* ChatAppApp.swift */,
 				75EE702F28F581E700246F35 /* ContentView.swift */,
+				75B398032906BD08006F84FE /* GoogleService-Info.plist */,
 				75EE703128F581E900246F35 /* Assets.xcassets */,
 				75EE703328F581E900246F35 /* Preview Content */,
 			);
@@ -333,6 +336,7 @@
 			files = (
 				75EE703528F581E900246F35 /* Preview Assets.xcassets in Resources */,
 				75EE703228F581E900246F35 /* Assets.xcassets in Resources */,
+				75B398042906BD08006F84FE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
