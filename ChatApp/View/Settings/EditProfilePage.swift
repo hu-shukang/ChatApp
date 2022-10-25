@@ -9,9 +9,9 @@ import SwiftUI
 
 struct EditProfilePage: View {
     @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var authVM: AuthViewModel
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
-    @State private var profileImage: Image?
     
     var body: some View {
         ZStack {
@@ -22,19 +22,18 @@ struct EditProfilePage: View {
                 VStack(spacing: 0) {
                     HStack {
                         VStack{
-                            if let profileImage = profileImage {
-                                Avator(image: profileImage)
+                            if let selectedImage = selectedImage {
+                                Avator(image: Image(uiImage: selectedImage))
                             } else {
                                 Avator(image: Image("avator"))
                             }
-                            
                             
                             Button(action: {
                                 showImagePicker.toggle()
                             }, label: {
                                 Text("Edit")
                             })
-                            .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
+                            .sheet(isPresented: $showImagePicker) {
                                 ImagePicker(image: $selectedImage)
                             }
                         }
@@ -85,18 +84,16 @@ struct EditProfilePage: View {
         .toolbarBackground(.visible, for: .navigationBar)
     }
     
-    func loadImage() {
-        guard let selectedImage = selectedImage else { return }
-        profileImage = Image(uiImage: selectedImage)
-    }
 }
 
 struct EditProfilePage_Previews: PreviewProvider {
     @StateObject static var settingsVM = SettingsViewModel()
+    @StateObject static var authVM = AuthViewModel()
     static var previews: some View {
         NavigationStack {
             EditProfilePage()
                 .environmentObject(settingsVM)
+                .environmentObject(authVM)
         }
     }
 }

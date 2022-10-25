@@ -19,9 +19,11 @@ class AuthViewModel: ObservableObject {
     @Published var selectedImage: UIImage?
     @Published var didAuthUser = false
     @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User = .init()
     
     init() {
         userSession = Auth.auth().currentUser
+        fetchUser()
     }
     
     func login() {
@@ -32,6 +34,7 @@ class AuthViewModel: ObservableObject {
             }
             self.resetInput()
             self.userSession = result?.user
+            self.fetchUser()
         }
     }
     
@@ -69,6 +72,7 @@ class AuthViewModel: ObservableObject {
                 Firestore.firestore().collection("users").document(uid).updateData(["profileImageUrl": imageUrl]) { _ in
                     print("DEBUG: successfully to upload file image")
                     self.userSession = self.tempUser
+                    self.fetchUser()
                 }
             }
         }
@@ -77,6 +81,15 @@ class AuthViewModel: ObservableObject {
     func logout() {
         self.userSession = nil
         try? Auth.auth().signOut()
+    }
+    
+    func fetchUser() {
+        guard let uid = userSession?.uid else { return }
+        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
+            guard let user = try? snapshot?.data(as: User.self) else { return }
+            print("DEBUG: User object is \(user)")
+            self.currentUser = user
+        }
     }
     
     private func resetInput() {

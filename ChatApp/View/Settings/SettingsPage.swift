@@ -16,9 +16,11 @@ struct SettingsPage: View {
             NavigationLink(destination: {
                 EditProfilePage()
                     .environmentObject(settingsVM)
+                    .environmentObject(authVM)
             }, label: {
                 SettingsHeader()
                     .environmentObject(settingsVM)
+                    .environmentObject(authVM)
             })
             
             VStack(spacing: 0) {

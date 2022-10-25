@@ -13,29 +13,33 @@ struct MainTabPage: View {
     
     var body: some View {
         // MARK: - Tab View
-        TabView(selection: $mainTabVM.selectedTab) {
-            ConversationsPage()
-                .environmentObject(authVM)
-                .tabItem {
-                    Image(systemName: "bubble.left")
-                }
-                .tag("conversations")
-            
-            ChannelsPage()
-                .environmentObject(authVM)
-                .tabItem {
-                    Image(systemName: "bubble.left.and.bubble.right")
-                }
-                .tag("channels")
-            
-            SettingsPage()
-                .environmentObject(authVM)
-                .tabItem {
-                    Image(systemName: "gearshape.fill")
-                }
-                .tag("settings")
+        if let _ = authVM.currentUser.id {
+            TabView(selection: $mainTabVM.selectedTab) {
+                ConversationsPage()
+                    .environmentObject(authVM)
+                    .tabItem {
+                        Image(systemName: "bubble.left")
+                    }
+                    .tag("conversations")
+                
+                ChannelsPage()
+                    .environmentObject(authVM)
+                    .tabItem {
+                        Image(systemName: "bubble.left.and.bubble.right")
+                    }
+                    .tag("channels")
+                
+                SettingsPage()
+                    .environmentObject(authVM)
+                    .tabItem {
+                        Image(systemName: "gearshape.fill")
+                    }
+                    .tag("settings")
+            }
+            .navigationTitle(mainTabVM.tabTitle)
+        } else {
+            Text("Loading...")
         }
-        .navigationTitle(mainTabVM.tabTitle)
     }
 }
 
