@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ChatPage: View {
-    @StateObject var chatVM = ChatViewModel()
+    @EnvironmentObject var chatVM: ChatViewModel
+    var user: User
     @FocusState var isEditing: Bool
     
     var body: some View {
@@ -16,10 +17,10 @@ struct ChatPage: View {
             // MARK: - messages
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
-                    ForEach(chatVM.messages) { message in
-                        ChatMessage(message: message)
-                            .environmentObject(chatVM)
-                    }
+//                    ForEach(chatVM.messages) { message in
+//                        ChatMessage(message: message)
+//                            .environmentObject(chatVM)
+//                    }
                 }
             }
             .onTapGesture {
@@ -31,13 +32,14 @@ struct ChatPage: View {
                 .environmentObject(chatVM)
             
         }
-        .navigationTitle("UserName")
+        .navigationTitle(user.username)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct ChatPage_Previews: PreviewProvider {
     static var previews: some View {
-        ChatPage()
+        ChatPage(user: .init())
+            .environmentObject(ChatViewModel())
     }
 }

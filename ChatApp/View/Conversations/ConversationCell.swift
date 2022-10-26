@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ConversationCell: View {
+    var user: User
+    
     var body: some View {
         VStack(spacing: 8) {
             HStack {
-                Avator(image: Image("avator"), size: 48)
+//                Avator(image: Image("avator"), size: 48)
+                AvatorImage(url: user.profileImageUrl, size: 48)
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Eddie Brock")
+                    Text(user.fullname)
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.customBlack)
                     
@@ -35,6 +38,6 @@ struct ConversationCell: View {
 
 struct ConversationCell_Previews: PreviewProvider {
     static var previews: some View {
-        ConversationCell()
+        ConversationCell(user: ChatViewModel().users[0])
     }
 }

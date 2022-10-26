@@ -47,7 +47,7 @@ class AuthViewModel: ObservableObject {
             print("DEBUG: Successfully registered user with firebase.")
             guard let user = result?.user else { return }
             let data: [String: Any] = ["email": self.email, "username": self.username, "fullname": self.fullname, "uid": user.uid]
-            Firestore.firestore().collection("users").document(user.uid).setData(data) { _ in
+            COLLECTION_USERS.document(user.uid).setData(data) { _ in
                 print("DEBUG: Successfully updated user info in firestore.")
                 self.tempUser = user
                 self.didAuthUser = true
@@ -69,7 +69,7 @@ class AuthViewModel: ObservableObject {
             ref.downloadURL { url, _ in
                 guard let imageUrl = url?.absoluteString else { return }
                 guard let uid = self.tempUser?.uid else { return }
-                Firestore.firestore().collection("users").document(uid).updateData(["profileImageUrl": imageUrl]) { _ in
+                COLLECTION_USERS.document(uid).updateData(["profileImageUrl": imageUrl]) { _ in
                     print("DEBUG: successfully to upload file image")
                     self.userSession = self.tempUser
                     self.fetchUser()
@@ -85,7 +85,7 @@ class AuthViewModel: ObservableObject {
     
     func fetchUser() {
         guard let uid = userSession?.uid else { return }
-        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
+        COLLECTION_USERS.document(uid).getDocument { snapshot, _ in
             guard let user = try? snapshot?.data(as: User.self) else { return }
             print("DEBUG: User object is \(user)")
             self.currentUser = user

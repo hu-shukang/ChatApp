@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NewMessagePage: View {
+    @EnvironmentObject var chatVM: ChatViewModel
+    @EnvironmentObject var router: Router
     @Binding var showChatsPage: Bool
     @Environment(\.dismiss) var dismiss
     @State private var searchText = ""
@@ -18,12 +20,13 @@ struct NewMessagePage: View {
                 .padding()
             
             VStack(alignment: .leading) {
-                ForEach((0 ... 10), id: \.self) { _ in
+                ForEach((chatVM.users)) { user in
                     Button(action: {
                         showChatsPage.toggle()
+                        router.path.append(user)
                         dismiss()
                     }, label: {
-                        UserCell()
+                        UserCell(user: user)
                     })
                 }
             }
@@ -34,5 +37,7 @@ struct NewMessagePage: View {
 struct NewMessagePage_Previews: PreviewProvider {
     static var previews: some View {
         NewMessagePage(showChatsPage: .constant(true))
+            .environmentObject(ChatViewModel())
+            .environmentObject(Router())
     }
 }

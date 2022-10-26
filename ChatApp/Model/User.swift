@@ -8,7 +8,7 @@
 import SwiftUI
 import FirebaseFirestoreSwift
 
-struct User: Identifiable, Decodable {
+struct User: Identifiable, Decodable, Hashable {
     @DocumentID var id: String?
     var uid: String
     var username: String
@@ -22,5 +22,13 @@ struct User: Identifiable, Decodable {
         self.fullname = ""
         self.email = ""
         self.profileImageUrl = ""
+    }
+    
+    init(uid: String, username: String, fullname: String, email: String, profileImageUrl: String) {
+        self.uid = uid
+        self.username = username
+        self.fullname = fullname
+        self.email = email
+        self.profileImageUrl = profileImageUrl
     }
 }

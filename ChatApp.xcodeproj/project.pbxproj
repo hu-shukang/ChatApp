@@ -17,6 +17,7 @@
 		7597E67E2902A6D9003F5B41 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597E67D2902A6D9003F5B41 /* UserCell.swift */; };
 		7597E6802902B0A8003F5B41 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7597E67F2902B0A8003F5B41 /* SearchBar.swift */; };
 		75985F7828F6BFE00047287A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75985F7728F6BFE00047287A /* Extensions.swift */; };
+		759A0BE7290936B10065105C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759A0BE6290936B10065105C /* Constants.swift */; };
 		75AE3C952907E3C000B7AF0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE3C942907E3C000B7AF0A /* User.swift */; };
 		75AE3C982907E7D200B7AF0A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 75AE3C972907E7D200B7AF0A /* FirebaseAuth */; };
 		75AE3C9A2907E7D200B7AF0A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 75AE3C992907E7D200B7AF0A /* FirebaseFirestore */; };
@@ -64,6 +65,7 @@
 		7597E67D2902A6D9003F5B41 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		7597E67F2902B0A8003F5B41 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		75985F7728F6BFE00047287A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		759A0BE6290936B10065105C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		75AE3C942907E3C000B7AF0A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		75AE3CA42907F71A00B7AF0A /* AvatorImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatorImage.swift; sourceTree = "<group>"; };
 		75B0810C28FEB3350079A504 /* MainTabPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabPage.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 			children = (
 				75985F7728F6BFE00047287A /* Extensions.swift */,
 				7597E677290298B0003F5B41 /* ImagePicker.swift */,
+				759A0BE6290936B10065105C /* Constants.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				75EE702E28F581E700246F35 /* ChatAppApp.swift in Sources */,
 				75D3719B29036B8C00DBB4CE /* ChatViewModel.swift in Sources */,
 				75B0811B28FEB7DC0079A504 /* MainTabViewModel.swift in Sources */,
+				759A0BE7290936B10065105C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

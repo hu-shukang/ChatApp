@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct ConversationsPage: View {
+    @EnvironmentObject var chatVM: ChatViewModel
+    @EnvironmentObject var router: Router
     @State private var showNewMessageSheet = false
     @State private var showChatPage = false
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            NavigationLink(destination: ChatPage(), isActive: $showChatPage, label: {})
-            
             // MARK: - chats
             ScrollView {
                 VStack {
-                    ForEach((0 ... 10), id: \.self) { _ in
-                        NavigationLink(destination: {
-                            ChatPage()
-                        }, label: {
-                            ConversationCell()
-                        })
+                    ForEach(chatVM.users) { user in
+                        ConversationCell(user: user)
+                            .onTapGesture {
+                                router.path.append(user)
+                            }
                     }
                 }
             }
@@ -44,15 +43,25 @@ struct ConversationsPage: View {
             .padding()
             .sheet(isPresented: $showNewMessageSheet) {
                 NewMessagePage(showChatsPage: $showChatPage)
+                    .environmentObject(chatVM)
+                    .environmentObject(router)
             }
+        }
+        .frame(maxWidth: .infinity)
+        .navigationDestination(for: User.self) { user in
+            ChatPage(user: user)
+                .environmentObject(chatVM)
         }
     }
 }
 
 struct ConversationsPage_Previews: PreviewProvider {
+    @StateObject static var router = Router()
     static var previews: some View {
-        NavigationStack {
+        NavigationStack(path: $router.path) {
             ConversationsPage()
+                .environmentObject(ChatViewModel())
+                .environmentObject(router)
         }
     }
 }
