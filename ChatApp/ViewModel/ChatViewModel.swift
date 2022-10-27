@@ -9,18 +9,18 @@ import SwiftUI
 import Firebase
 
 class ChatViewModel: ObservableObject {
+    private let user: User
     
     @Published var sendMessageText: String = ""
     @Published var messages: [Message] = []
-    @Published var users: [User] = []
     
-    init() {
-        fetchUsers()
+    init(to user: User) {
+        self.user = user
     }
     
-    func sendMessage(to: User) {
+    func sendMessage() {
         guard let currentId = AuthViewModel.shared.userSession?.uid else { return }
-        guard let chatPartnerId = to.id else { return }
+        guard let chatPartnerId = self.user.id else { return }
         
         let currentUserRef = COLLECTION_MESSAGES.document(currentId).collection(chatPartnerId).document()
         let chatPartnerRef = COLLECTION_MESSAGES.document(chatPartnerId).collection(currentId)
@@ -36,10 +36,5 @@ class ChatViewModel: ObservableObject {
         sendMessageText = ""
     }
     
-    func fetchUsers() {
-        COLLECTION_USERS.whereField("uid", isNotEqualTo: Auth.auth().currentUser?.uid ?? "").getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
-            self.users = documents.compactMap({ try? $0.data(as: User.self) })
-        }
-    }
+    
 }

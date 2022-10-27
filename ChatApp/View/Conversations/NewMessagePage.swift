@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewMessagePage: View {
-    @EnvironmentObject var chatVM: ChatViewModel
+    @EnvironmentObject var authVM: AuthViewModel
     @EnvironmentObject var router: Router
     @Binding var showChatsPage: Bool
     @Environment(\.dismiss) var dismiss
@@ -20,7 +20,7 @@ struct NewMessagePage: View {
                 .padding()
             
             VStack(alignment: .leading) {
-                ForEach((chatVM.users)) { user in
+                ForEach(authVM.friends) { user in
                     Button(action: {
                         showChatsPage.toggle()
                         router.path.append(user)
@@ -37,7 +37,7 @@ struct NewMessagePage: View {
 struct NewMessagePage_Previews: PreviewProvider {
     static var previews: some View {
         NewMessagePage(showChatsPage: .constant(true))
-            .environmentObject(ChatViewModel())
             .environmentObject(Router())
+            .environmentObject(AuthViewModel())
     }
 }

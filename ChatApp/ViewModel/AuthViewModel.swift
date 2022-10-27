@@ -20,12 +20,14 @@ class AuthViewModel: ObservableObject {
     @Published var didAuthUser = false
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User = .init()
+    @Published var friends: [User] = []
     
     static let shared = AuthViewModel()
     
     init() {
         userSession = Auth.auth().currentUser
         fetchUser()
+        fetchFriends()
     }
     
     func login() {
@@ -91,6 +93,13 @@ class AuthViewModel: ObservableObject {
             guard let user = try? snapshot?.data(as: User.self) else { return }
             print("DEBUG: User object is \(user)")
             self.currentUser = user
+        }
+    }
+    
+    func fetchFriends() {
+        COLLECTION_USERS.whereField("uid", isNotEqualTo: self.userSession?.uid ?? "").getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            self.friends = documents.compactMap({ try? $0.data(as: User.self) })
         }
     }
     

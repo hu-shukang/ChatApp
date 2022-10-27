@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ChatPage: View {
-    @EnvironmentObject var chatVM: ChatViewModel
     var user: User
+    @ObservedObject var chatVM: ChatViewModel
     @FocusState var isEditing: Bool
+    
+    init(user: User) {
+        self.user = user
+        chatVM = ChatViewModel(to: user)
+    }
     
     var body: some View {
         VStack {
@@ -19,7 +24,6 @@ struct ChatPage: View {
                 VStack(alignment: .leading, spacing: 12) {
                     ForEach(chatVM.messages) { message in
                         ChatMessage(message: message)
-                            .environmentObject(chatVM)
                     }
                 }
             }
@@ -28,7 +32,7 @@ struct ChatPage: View {
             }
             
             // MARK: - input
-            MessageInput(isEditing: $isEditing, user: user)
+            MessageInput(isEditing: $isEditing)
                 .environmentObject(chatVM)
             
         }
@@ -40,6 +44,5 @@ struct ChatPage: View {
 struct ChatPage_Previews: PreviewProvider {
     static var previews: some View {
         ChatPage(user: .init())
-            .environmentObject(ChatViewModel())
     }
 }

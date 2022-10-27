@@ -38,6 +38,6 @@ struct ConversationCell: View {
 
 struct ConversationCell_Previews: PreviewProvider {
     static var previews: some View {
-        ConversationCell(user: ChatViewModel().users[0])
+        ConversationCell(user: .init())
     }
 }

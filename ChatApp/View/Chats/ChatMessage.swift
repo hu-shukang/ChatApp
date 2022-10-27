@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ChatMessage: View {
-    @EnvironmentObject var chatVM: ChatViewModel
     let message: Message
     
     var body: some View {
