@@ -10,13 +10,15 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var router = Router()
     @StateObject var mainTabVM = MainTabViewModel()
-    @StateObject var authVM = AuthViewModel()
+    @StateObject var authVM = AuthViewModel.shared
     
     var body: some View {
         NavigationStack(path: $router.path) {
             Group {
                 if authVM.userSession == nil {
                     LoginPage()
+                } else if authVM.currentUser.id == nil {
+                    Text("Loading")
                 } else {
                     MainTabPage()
                 }

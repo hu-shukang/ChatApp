@@ -8,42 +8,39 @@
 import SwiftUI
 
 struct MainTabPage: View {
-    @StateObject var mainTabVM = MainTabViewModel()
-    @StateObject var chatVM = ChatViewModel()
     @EnvironmentObject var authVM: AuthViewModel
     @EnvironmentObject var router: Router
     
+    @StateObject var mainTabVM = MainTabViewModel()
+    @StateObject var chatVM = ChatViewModel()
+    
     var body: some View {
         // MARK: - Tab View
-        if let _ = authVM.currentUser.id {
-            TabView(selection: $mainTabVM.selectedTab) {
-                ConversationsPage()
-                    .environmentObject(authVM)
-                    .environmentObject(chatVM)
-                    .environmentObject(router)
-                    .tabItem {
-                        Image(systemName: "bubble.left")
-                    }
-                    .tag("conversations")
-                
-                ChannelsPage()
-                    .environmentObject(authVM)
-                    .tabItem {
-                        Image(systemName: "bubble.left.and.bubble.right")
-                    }
-                    .tag("channels")
-                
-                SettingsPage()
-                    .environmentObject(authVM)
-                    .tabItem {
-                        Image(systemName: "gearshape.fill")
-                    }
-                    .tag("settings")
-            }
-            .navigationTitle(mainTabVM.tabTitle)
-        } else {
-            Text("Loading...")
+        TabView(selection: $mainTabVM.selectedTab) {
+            ConversationsPage()
+                .environmentObject(authVM)
+                .environmentObject(chatVM)
+                .environmentObject(router)
+                .tabItem {
+                    Image(systemName: "bubble.left")
+                }
+                .tag("conversations")
+            
+            ChannelsPage()
+                .environmentObject(authVM)
+                .tabItem {
+                    Image(systemName: "bubble.left.and.bubble.right")
+                }
+                .tag("channels")
+            
+            SettingsPage()
+                .environmentObject(authVM)
+                .tabItem {
+                    Image(systemName: "gearshape.fill")
+                }
+                .tag("settings")
         }
+        .navigationTitle(mainTabVM.tabTitle)
     }
 }
 

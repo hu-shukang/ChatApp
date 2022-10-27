@@ -10,6 +10,7 @@ import SwiftUI
 struct MessageInput: View {
     @EnvironmentObject var chatVM: ChatViewModel
     var isEditing: FocusState<Bool>.Binding
+    var user: User
     
     var body: some View {
         VStack {
@@ -25,7 +26,7 @@ struct MessageInput: View {
                     .frame(minHeight: 30)
                 
                 Button(action: {
-                    chatVM.sendMessage()
+                    chatVM.sendMessage(to: user)
                 }, label: {
                     Text("Send")
                         .bold()
@@ -45,7 +46,7 @@ struct MessageInput_Previews: PreviewProvider {
     @FocusState static var isEditing: Bool
     
     static var previews: some View {
-        MessageInput(isEditing: $isEditing)
+        MessageInput(isEditing: $isEditing, user: .init())
             .environmentObject(chatVM)
     }
 }

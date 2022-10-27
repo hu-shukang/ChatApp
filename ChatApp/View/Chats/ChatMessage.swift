@@ -17,7 +17,7 @@ struct ChatMessage: View {
                 Spacer()
                 
                 HStack(alignment: .bottom) {
-                    Text(message.messageText)
+                    Text(message.text)
                         .padding(12)
                         .background(Color.customBlue)
                         .font(.system(size: 15))
@@ -32,7 +32,7 @@ struct ChatMessage: View {
                 HStack(alignment: .bottom) {
                     Avator(image: Image("avator"), size: 32)
                     
-                    Text(message.messageText)
+                    Text(message.text)
                         .padding(12)
                         .background(Color(.systemGray5))
                         .font(.system(size: 15))
@@ -47,14 +47,14 @@ struct ChatMessage: View {
     }
 }
 
-struct ChatMessage_Previews: PreviewProvider {
-    @StateObject static var chatVM = ChatViewModel()
-    static var previews: some View {
-        VStack {
-            ChatMessage(message: .init(isFromCurrentUser: true, messageText: "Hello world"))
-                .environmentObject(chatVM)
-            ChatMessage(message: .init(isFromCurrentUser: false, messageText: "Hello"))
-                .environmentObject(chatVM)
-        }
-    }
-}
+//struct ChatMessage_Previews: PreviewProvider {
+//    @StateObject static var chatVM = ChatViewModel()
+//    static var previews: some View {
+//        VStack {
+//            ChatMessage(message: .init(isFromCurrentUser: true, messageText: "Hello world"))
+//                .environmentObject(chatVM)
+//            ChatMessage(message: .init(isFromCurrentUser: false, messageText: "Hello"))
+//                .environmentObject(chatVM)
+//        }
+//    }
+//}

@@ -17,10 +17,10 @@ struct ChatPage: View {
             // MARK: - messages
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
-//                    ForEach(chatVM.messages) { message in
-//                        ChatMessage(message: message)
-//                            .environmentObject(chatVM)
-//                    }
+                    ForEach(chatVM.messages) { message in
+                        ChatMessage(message: message)
+                            .environmentObject(chatVM)
+                    }
                 }
             }
             .onTapGesture {
@@ -28,7 +28,7 @@ struct ChatPage: View {
             }
             
             // MARK: - input
-            MessageInput(isEditing: $isEditing)
+            MessageInput(isEditing: $isEditing, user: user)
                 .environmentObject(chatVM)
             
         }
