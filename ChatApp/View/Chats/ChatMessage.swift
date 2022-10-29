@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ChatMessage: View {
     let message: Message
+    let user: User
     
     var body: some View {
         HStack {
@@ -23,13 +24,13 @@ struct ChatMessage: View {
                         .clipShape(ChatBubble(isFromCurrentUser: message.isFromCurrentUser))
                         .foregroundColor(.white)
                     
-                    Avator(image: Image("avator"), size: 32)
+                    AvatorImage(url: AuthViewModel.shared.currentUser.profileImageUrl, size: 32)
                 }
                 .padding(.trailing)
                 .padding(.leading, 80)
             } else {
                 HStack(alignment: .bottom) {
-                    Avator(image: Image("avator"), size: 32)
+                    AvatorImage(url: user.profileImageUrl, size: 32)
                     
                     Text(message.text)
                         .padding(12)

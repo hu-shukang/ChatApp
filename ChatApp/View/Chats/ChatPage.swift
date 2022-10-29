@@ -23,7 +23,7 @@ struct ChatPage: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
                     ForEach(chatVM.messages) { message in
-                        ChatMessage(message: message)
+                        ChatMessage(message: message, user: user)
                     }
                 }
             }
