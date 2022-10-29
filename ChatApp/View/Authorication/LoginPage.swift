@@ -10,64 +10,77 @@ import SwiftUI
 struct LoginPage: View {
     @EnvironmentObject var router: Router;
     @EnvironmentObject var authVM: AuthViewModel;
+    @State var gotoSignUp: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Hello.")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.customBlack)
-            
-            Text("Welcome Back")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.customBlue)
-            
-            VStack(spacing: 32) {
-                CustomTextField(text: $authVM.email, icon: "envelope", placeholder: "Email")
-                CustomTextField(text: $authVM.password, icon: "lock", placeholder: "Password", isSecure: true)
+        ZStack {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("こんにちは.")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.customBlack)
+                
+                Text("Welcome Back")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.customBlue)
+                
+                VStack(spacing: 32) {
+                    CustomTextField(text: $authVM.email, icon: "envelope", placeholder: "メールアドレス")
+                    CustomTextField(text: $authVM.password, icon: "lock", placeholder: "パスワード", isSecure: true)
+                    
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            gotoSignUp.toggle()
+                        }, label: {
+                            Text("パスワードお忘れ？")
+                                .font(.system(size: 13))
+                                .foregroundColor(Color.customBlue)
+                                .fontWeight(.semibold)
+                        })
+                    }
+                    
+                    LargeButton(text: "ログイン", action: {
+                        authVM.login()
+                    })
+                }
+                .padding([.horizontal, .top], 32)
+                
+                Spacer()
                 
                 HStack {
-                    Spacer()
-                    NavigationLink(value: router.FORGOT_PASSWORD) {
-                        Text("Forgot Password?")
-                            .font(.system(size: 13))
-                            .foregroundColor(Color.customBlue)
-                            .fontWeight(.semibold)
-                    }
+                    Button(action: {
+                        gotoSignUp.toggle()
+                    }, label: {
+                        HStack(alignment: .center) {
+                            Text("アカウントをお持ちではない?")
+                            Text("新規登録")
+                                .fontWeight(.semibold)
+                        }
+                        .foregroundColor(Color.customBlue)
+                        .font(.system(size: 14))
+                    })
                 }
+                .frame(maxWidth: .infinity)
                 
-                LargeButton(text: "Sign In", action: {
-                    authVM.login()
-                })
             }
-            .padding([.horizontal, .top], 32)
+            .padding()
+            .padding(.top, 30)
+            .frame(maxWidth: .infinity, alignment: .leading)
             
-            Spacer()
-            
-            HStack {
-                NavigationLink(value: router.SIGN_UP) {
-                    HStack(alignment: .center) {
-                        Text("Don't have an account?")
-                        Text("Sign Up")
-                            .fontWeight(.semibold)
-                    }
-                    .foregroundColor(Color.customBlue)
-                    .font(.system(size: 14))
-                }
+            if authVM.waiting {
+                Loading(text: "ログイン中。。。")
             }
-            .frame(maxWidth: .infinity)
-            
         }
-        .padding()
-        .padding(.top, 30)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .navigationDestination(for: String.self) { destination in
-            if destination == router.SIGN_UP {
-                RegistrationPage()
-                    .environmentObject(router)
-                    .environmentObject(authVM)
-            }
+        .navigationDestination(isPresented: $gotoSignUp) {
+            RegistrationPage()
+                .environmentObject(router)
+                .environmentObject(authVM)
+        }
+        .navigationDestination(isPresented: $authVM.didAuthUser) {
+            MainTabPage()
+                .environmentObject(router)
         }
     }
 }

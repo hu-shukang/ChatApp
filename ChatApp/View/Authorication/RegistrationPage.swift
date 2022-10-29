@@ -8,59 +8,62 @@
 import SwiftUI
 
 struct RegistrationPage: View {
-//    @State private var email = ""
-//    @State private var username = ""
-//    @State private var fullname = ""
-//    @State private var password = ""
     @EnvironmentObject var router: Router;
     @EnvironmentObject var authVM: AuthViewModel;
+    @Environment(\.dismiss) var dismiss;
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Get started.")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.customBlack)
-            
-            Text("Create your account")
-                .font(.largeTitle)
-                .bold()
-                .foregroundColor(.customBlue)
-            
-            VStack(spacing: 32) {
-                CustomTextField(text: $authVM.email, icon: "envelope", placeholder: "Email")
-                CustomTextField(text: $authVM.username, icon: "person", placeholder: "User Name")
-                CustomTextField(text: $authVM.fullname, icon: "person", placeholder: "Full Name")
-                CustomTextField(text: $authVM.password, icon: "lock", placeholder: "Password", isSecure: true)
+        ZStack {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Get started.")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.customBlack)
                 
-                LargeButton(text: "Sign Up", action: {
-                    authVM.register()
-                })
+                Text("アカウント新規登録")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(.customBlue)
+                
+                VStack(spacing: 32) {
+                    CustomTextField(text: $authVM.email, icon: "envelope", placeholder: "メールアドレス")
+                    CustomTextField(text: $authVM.username, icon: "person", placeholder: "ユーザ名")
+                    CustomTextField(text: $authVM.fullname, icon: "person", placeholder: "フルネーム")
+                    CustomTextField(text: $authVM.password, icon: "lock", placeholder: "パスワード", isSecure: true)
+                    
+                    LargeButton(text: "新規登録", action: {
+                        authVM.register()
+                    })
+                }
+                .padding([.horizontal, .top], 32)
+                
+                Spacer()
+                
+                HStack {
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        HStack(alignment: .center) {
+                            Text("アカウントを持っています?")
+                            Text("ログイン")
+                                .fontWeight(.semibold)
+                        }
+                        .foregroundColor(Color.customBlue)
+                        .font(.system(size: 14))
+                    })
+                }
+                .frame(maxWidth: .infinity)
+                
             }
-            .padding([.horizontal, .top], 32)
+            .navigationBarBackButtonHidden()
+            .padding()
+            .padding(.top, 30)
+            .frame(maxWidth: .infinity, alignment: .leading)
             
-            Spacer()
-            
-            HStack {
-                Button(action: {
-                    router.path.removeLast()
-                }, label: {
-                    HStack(alignment: .center) {
-                        Text("Already have an account?")
-                        Text("Sign In")
-                            .fontWeight(.semibold)
-                    }
-                    .foregroundColor(Color.customBlue)
-                    .font(.system(size: 14))
-                })
+            if authVM.waiting {
+                Loading(text: "新規登録中。。。")
             }
-            .frame(maxWidth: .infinity)
-            
         }
-        .navigationBarBackButtonHidden()
-        .padding()
-        .padding(.top, 30)
-        .frame(maxWidth: .infinity, alignment: .leading)
         .navigationDestination(isPresented: $authVM.didAuthUser) {
             ProfilePhotoSelectorPage()
                 .environmentObject(router)

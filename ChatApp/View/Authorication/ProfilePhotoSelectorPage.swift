@@ -13,38 +13,47 @@ struct ProfilePhotoSelectorPage: View {
     @State private var imagePickerPresented = false
     
     var body: some View {
-        VStack {
-            Button(action: {
-                imagePickerPresented.toggle()
-            }, label: {
-                if let selectedImage = authVM.selectedImage {
-                    Avator(image: Image(uiImage: selectedImage), size: 180)
-                } else {
-                    Avator(image: Image("upload"), size: 180)
-                }
-            })
-            .sheet(isPresented: $imagePickerPresented) {
-                ImagePicker(image: $authVM.selectedImage)
-            }
-            
-            Text(authVM.selectedImage == nil ? "Select a profile photo" : "Great! Tap below to continue")
-            
-            if authVM.selectedImage != nil {
+        ZStack {
+            VStack {
                 Button(action: {
-                    authVM.uploadProfileImage()
+                    imagePickerPresented.toggle()
                 }, label: {
-                    Text("Continue")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 340, height: 50)
-                        .background(Color.customBlue)
-                        .clipShape(Capsule())
-                        .padding()
+                    if let selectedImage = authVM.selectedImage {
+                        Avator(image: Image(uiImage: selectedImage), size: 180)
+                    } else {
+                        Avator(image: Image("upload"), size: 180)
+                    }
                 })
-                .shadow(color: .customDarkGray, radius: 10)
+                .sheet(isPresented: $imagePickerPresented) {
+                    ImagePicker(image: $authVM.selectedImage)
+                }
+                
+                Text(authVM.selectedImage == nil ? "プロフィール写真をご選択ください" : "選択できました!")
+                
+                if authVM.selectedImage != nil {
+                    Button(action: {
+                        authVM.uploadProfileImage()
+                    }, label: {
+                        Text("アップロード")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(width: 340, height: 50)
+                            .background(Color.customBlue)
+                            .clipShape(Capsule())
+                            .padding()
+                    })
+                    .shadow(color: .customDarkGray, radius: 10)
+                }
+            }
+            if authVM.waiting {
+                Loading(text: "プロフィール写真をアップロード中。。。")
             }
         }
         .navigationBarBackButtonHidden(true)
+        .navigationDestination(isPresented: $authVM.didUploadProfileImage) {
+            MainTabPage()
+                .environmentObject(router)
+        }
     }
 }
 

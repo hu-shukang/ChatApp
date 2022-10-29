@@ -16,9 +16,14 @@ class AuthViewModel: ObservableObject {
     @Published var username = ""
     @Published var fullname = ""
     @Published var password = ""
+    
     @Published var selectedImage: UIImage?
     @Published var didAuthUser = false
+    @Published var didUploadProfileImage = false
+    @Published var waiting = false
     @Published var userSession: FirebaseAuth.User?
+    
+    
     @Published var currentUser: User = .init()
     @Published var friends: [User] = []
     
@@ -26,23 +31,26 @@ class AuthViewModel: ObservableObject {
     
     init() {
         userSession = Auth.auth().currentUser
-        fetchUser()
-        fetchFriends()
+//        fetchUser()
+//        fetchFriends()
     }
     
     func login() {
+        waiting = true
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: Failed to sign in with error \(error.localizedDescription)")
                 return
             }
+            self.waiting = false
             self.resetInput()
             self.userSession = result?.user
-            self.fetchUser()
+            self.didAuthUser = true
         }
     }
     
     func register() {
+        waiting = true
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 print("DEBUG: Failed to register with error \(error.localizedDescription)")
@@ -51,8 +59,9 @@ class AuthViewModel: ObservableObject {
             print("DEBUG: Successfully registered user with firebase.")
             guard let user = result?.user else { return }
             let data: [String: Any] = ["email": self.email, "username": self.username, "fullname": self.fullname, "uid": user.uid]
-            COLLECTION_USERS.document(user.uid).setData(data) { _ in
+            COLLECTION_USERS.document(user.uid).collection("info").document().setData(data) { _ in
                 print("DEBUG: Successfully updated user info in firestore.")
+                self.waiting = false
                 self.tempUser = user
                 self.didAuthUser = true
                 self.resetInput()
@@ -61,6 +70,7 @@ class AuthViewModel: ObservableObject {
     }
     
     func uploadProfileImage() {
+        waiting = true
         guard let image = self.selectedImage else { return }
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
         let filename = UUID().uuidString
@@ -76,7 +86,8 @@ class AuthViewModel: ObservableObject {
                 COLLECTION_USERS.document(uid).updateData(["profileImageUrl": imageUrl]) { _ in
                     print("DEBUG: successfully to upload file image")
                     self.userSession = self.tempUser
-                    self.fetchUser()
+                    self.waiting = false
+                    self.didUploadProfileImage = true
                 }
             }
         }
@@ -87,21 +98,21 @@ class AuthViewModel: ObservableObject {
         try? Auth.auth().signOut()
     }
     
-    func fetchUser() {
-        guard let uid = userSession?.uid else { return }
-        COLLECTION_USERS.document(uid).getDocument { snapshot, _ in
-            guard let user = try? snapshot?.data(as: User.self) else { return }
-            print("DEBUG: User object is \(user)")
-            self.currentUser = user
-        }
-    }
-    
-    func fetchFriends() {
-        COLLECTION_USERS.whereField("uid", isNotEqualTo: self.userSession?.uid ?? "").getDocuments { snapshot, _ in
-            guard let documents = snapshot?.documents else { return }
-            self.friends = documents.compactMap({ try? $0.data(as: User.self) })
-        }
-    }
+//    func fetchUser() {
+//        guard let uid = userSession?.uid else { return }
+//        COLLECTION_USERS.document(uid).getDocument { snapshot, _ in
+//            guard let user = try? snapshot?.data(as: User.self) else { return }
+//            print("DEBUG: User object is \(user)")
+//            self.currentUser = user
+//        }
+//    }
+//
+//    func fetchFriends() {
+//        COLLECTION_USERS.whereField("uid", isNotEqualTo: self.userSession?.uid ?? "").getDocuments { snapshot, _ in
+//            guard let documents = snapshot?.documents else { return }
+//            self.friends = documents.compactMap({ try? $0.data(as: User.self) })
+//        }
+//    }
     
     private func resetInput() {
         email = ""
