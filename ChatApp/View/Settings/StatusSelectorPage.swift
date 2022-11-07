@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StatusSelectorPage: View {
-    @EnvironmentObject var userVM: UserViewModel
+    @StateObject var userVM = UserViewModel.shared
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -58,7 +58,6 @@ struct StatusSelectorPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             StatusSelectorPage()
-                .environmentObject(UserViewModel.shared)
         }
     }
 }

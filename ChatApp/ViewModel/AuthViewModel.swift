@@ -88,14 +88,16 @@ class AuthViewModel: ObservableObject {
                     self.userSession = self.tempUser
                     self.waiting = false
                     self.didAuthUser = true
+                    print("didAuthUser: \(self.didAuthUser)")
                 }
             }
         }
     }
     
-    func logout() {
+    func logout(callback: @escaping () -> Void) {
         self.userSession = nil
         try? Auth.auth().signOut()
+        callback()
     }
     
     private func resetInput() {

@@ -46,6 +46,6 @@ struct MessageInput_Previews: PreviewProvider {
     
     static var previews: some View {
         MessageInput(isEditing: $isEditing)
-            .environmentObject(chatVM)
+            .environmentObject(ChatViewModel(to: User()))
     }
 }

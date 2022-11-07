@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SettingsPage: View {
     @StateObject var settingsVM = SettingsViewModel()
-    @EnvironmentObject var userVM: UserViewModel
+    @StateObject var userVM = UserViewModel.shared
+    @StateObject var authVM = AuthViewModel.shared
+    @State var logout: Bool = false
     
     var body: some View {
         VStack(spacing: 32) {
             NavigationLink(destination: {
                 EditProfilePage()
-                    .environmentObject(settingsVM)
-                    .environmentObject(userVM)
                     .onDisappear {
                         userVM.updateUsername(callback: {
                             print("DEBUG: Success to update username")
@@ -24,7 +24,6 @@ struct SettingsPage: View {
                     }
             }, label: {
                 SettingsHeader()
-                    .environmentObject(userVM)
             })
             
             VStack(spacing: 0) {
@@ -42,7 +41,11 @@ struct SettingsPage: View {
             .background(.white)
         
             
-            Button(action: AuthViewModel.shared.logout, label: {
+            Button(action: {
+                authVM.logout {
+                    self.logout = true
+                }
+            }, label: {
                 Text("Logout")
                     .foregroundColor(.red)
                     .font(.system(size: 16))
@@ -60,6 +63,9 @@ struct SettingsPage: View {
         }
         .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
+        .navigationDestination(isPresented: $logout) {
+            LoginPage()
+        }
     }
 }
 
@@ -67,7 +73,6 @@ struct SettingsPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             SettingsPage()
-                .environmentObject(UserViewModel.shared)
                 .navigationTitle("Settings")
         }
     }

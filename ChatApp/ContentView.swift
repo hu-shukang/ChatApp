@@ -15,17 +15,12 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $router.path) {
             Group {
-//                if authVM.userSession != nil {
-//                    MainTabPage()
-//                } else if authVM.authAction == .LOGIN {
-//                    LoginPage()
-//                } else {
-//                    RegistrationPage()
-//                }
-                LoginPage()
+                if authVM.userSession != nil {
+                    MainTabPage()
+                } else {
+                    LoginPage()
+                }
             }
-            .environmentObject(router)
-            .environmentObject(authVM)
         }
     }
 }

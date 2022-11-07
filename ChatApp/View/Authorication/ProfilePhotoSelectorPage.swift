@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ProfilePhotoSelectorPage: View {
-    @EnvironmentObject var router: Router;
-    @EnvironmentObject var authVM: AuthViewModel;
+    @StateObject var authVM = AuthViewModel.shared;
     @State private var imagePickerPresented = false
     
     var body: some View {
@@ -52,7 +51,6 @@ struct ProfilePhotoSelectorPage: View {
         .navigationBarBackButtonHidden(true)
         .navigationDestination(isPresented: $authVM.didAuthUser) {
             MainTabPage()
-                .environmentObject(router)
         }
     }
 }
@@ -60,7 +58,5 @@ struct ProfilePhotoSelectorPage: View {
 struct ProfilePhotoSelectorPage_Previews: PreviewProvider {
     static var previews: some View {
         ProfilePhotoSelectorPage()
-            .environmentObject(Router())
-            .environmentObject(AuthViewModel())
     }
 }

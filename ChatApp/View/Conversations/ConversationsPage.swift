@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ConversationsPage: View {
-    @EnvironmentObject var router: Router
+    @StateObject var router = Router.shared
     @State private var showNewMessageSheet = false
     @State private var showChatPage = false
     
@@ -42,7 +42,6 @@ struct ConversationsPage: View {
             .padding()
             .sheet(isPresented: $showNewMessageSheet) {
                 NewMessagePage(showChatsPage: $showChatPage)
-                    .environmentObject(router)
             }
         }
         .frame(maxWidth: .infinity)
@@ -57,7 +56,6 @@ struct ConversationsPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack(path: $router.path) {
             ConversationsPage()
-                .environmentObject(router)
         }
     }
 }

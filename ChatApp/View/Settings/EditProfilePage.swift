@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct EditProfilePage: View {
-    @EnvironmentObject var userVM: UserViewModel
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @StateObject var userVM = UserViewModel.shared
+    @StateObject var settingsVM = SettingsViewModel.shared
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
     
@@ -64,7 +64,6 @@ struct EditProfilePage: View {
                     
                     NavigationLink(destination: {
                         StatusSelectorPage()
-                            .environmentObject(userVM)
                     }, label: {
                         HStack {
                             Text(userVM.status)
@@ -93,8 +92,6 @@ struct EditProfilePage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             EditProfilePage()
-                .environmentObject(settingsVM)
-                .environmentObject(UserViewModel.shared)
         }
     }
 }

@@ -33,7 +33,6 @@ struct ChatPage: View {
             
             // MARK: - input
             MessageInput(isEditing: $isEditing)
-                .environmentObject(chatVM)
             
         }
         .navigationTitle(user.username)

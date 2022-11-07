@@ -25,4 +25,6 @@ class SettingsViewModel: ObservableObject {
     
     @Published var username: String = "HU SHUKANG"
     @Published var currentStatus: String = "Avaliable"
+    
+    static let shared = SettingsViewModel()
 }

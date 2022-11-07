@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct LoginPage: View {
-    @EnvironmentObject var router: Router;
-    @EnvironmentObject var authVM: AuthViewModel;
+    @StateObject var authVM = AuthViewModel.shared;
     @State var gotoSignUp: Bool = false
     
     var body: some View {
@@ -75,12 +74,9 @@ struct LoginPage: View {
         }
         .navigationDestination(isPresented: $gotoSignUp) {
             RegistrationPage()
-                .environmentObject(router)
-                .environmentObject(authVM)
         }
         .navigationDestination(isPresented: $authVM.didAuthUser) {
             return MainTabPage()
-                .environmentObject(router)
         }
     }
 }

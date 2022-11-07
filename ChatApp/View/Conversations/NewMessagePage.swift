@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct NewMessagePage: View {
-    @EnvironmentObject var authVM: AuthViewModel
-    @EnvironmentObject var router: Router
+    @StateObject var authVM = AuthViewModel.shared
+    @StateObject var router = Router.shared
     @Binding var showChatsPage: Bool
     @Environment(\.dismiss) var dismiss
     @State private var searchText = ""
@@ -37,7 +37,5 @@ struct NewMessagePage: View {
 struct NewMessagePage_Previews: PreviewProvider {
     static var previews: some View {
         NewMessagePage(showChatsPage: .constant(true))
-            .environmentObject(Router())
-            .environmentObject(AuthViewModel())
     }
 }

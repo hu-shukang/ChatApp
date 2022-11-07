@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct RegistrationPage: View {
-    @EnvironmentObject var router: Router;
-    @EnvironmentObject var authVM: AuthViewModel;
+    @StateObject var authVM = AuthViewModel.shared;
     @Environment(\.dismiss) var dismiss;
     
     var body: some View {
@@ -66,8 +65,6 @@ struct RegistrationPage: View {
         }
         .navigationDestination(isPresented: $authVM.didRegister) {
             ProfilePhotoSelectorPage()
-                .environmentObject(router)
-                .environmentObject(authVM)
         }
     }
 }
@@ -75,7 +72,5 @@ struct RegistrationPage: View {
 struct RegistrationPage_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationPage()
-            .environmentObject(Router())
-            .environmentObject(AuthViewModel())
     }
 }

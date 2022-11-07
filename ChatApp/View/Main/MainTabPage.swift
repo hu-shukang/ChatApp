@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabPage: View {
-    @EnvironmentObject var router: Router
+    @StateObject var router = Router.shared
     @StateObject var mainTabVM = MainTabViewModel()
     @StateObject var userVM = UserViewModel.shared
     
@@ -16,7 +16,6 @@ struct MainTabPage: View {
         // MARK: - Tab View
         TabView(selection: $mainTabVM.selectedTab) {
             ConversationsPage()
-                .environmentObject(router)
                 .tabItem {
                     Image(systemName: "bubble.left")
                 }
@@ -29,7 +28,6 @@ struct MainTabPage: View {
                 .tag("channels")
 
             SettingsPage()
-                .environmentObject(userVM)
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                 }
@@ -43,7 +41,6 @@ struct MainTabPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             MainTabPage()
-                .environmentObject(Router())
         }
     }
 }

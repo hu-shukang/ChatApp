@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct SettingsHeader: View {
-    @EnvironmentObject var userVM: UserViewModel
+    @StateObject var userVM = UserViewModel.shared
     
     var body: some View {
         HStack {
@@ -40,6 +40,5 @@ struct SettingsHeader_Previews: PreviewProvider {
     
     static var previews: some View {
         SettingsHeader()
-            .environmentObject(UserViewModel.shared)
     }
 }
