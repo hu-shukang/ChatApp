@@ -10,14 +10,13 @@ import Kingfisher
 
 struct SettingsHeader: View {
     @EnvironmentObject var settingsVM: SettingsViewModel
-    @EnvironmentObject var authVM: AuthViewModel
     
     var body: some View {
         HStack {
-            AvatorImage(url: authVM.currentUser.profileImageUrl)
+            AvatorImage(url: AuthViewModel.shared.currentUser.profileImageUrl)
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(authVM.currentUser.username)
+                Text(AuthViewModel.shared.currentUser.username)
                     .font(.system(size: 18))
                     .foregroundColor(.black)
                 
@@ -36,11 +35,9 @@ struct SettingsHeader: View {
 
 struct SettingsHeader_Previews: PreviewProvider {
     @StateObject static var settingsVM = SettingsViewModel()
-    @StateObject static var authVM = AuthViewModel()
     
     static var previews: some View {
         SettingsHeader()
             .environmentObject(settingsVM)
-            .environmentObject(authVM)
     }
 }

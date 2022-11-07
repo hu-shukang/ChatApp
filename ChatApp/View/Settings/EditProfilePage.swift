@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct EditProfilePage: View {
+    @EnvironmentObject var userVM: UserViewModel
     @EnvironmentObject var settingsVM: SettingsViewModel
-    @EnvironmentObject var authVM: AuthViewModel
     @State private var showImagePicker = false
     @State private var selectedImage: UIImage?
     
@@ -22,10 +22,8 @@ struct EditProfilePage: View {
                 VStack(spacing: 0) {
                     HStack {
                         VStack{
-                            if let selectedImage = selectedImage {
-                                Avator(image: Image(uiImage: selectedImage))
-                            } else {
-                                Avator(image: Image("avator"))
+                            if let profileImageUrl = userVM.profileImageUrl {
+                                AvatorImage(url: profileImageUrl, size: 32)
                             }
                             
                             Button(action: {
@@ -33,7 +31,11 @@ struct EditProfilePage: View {
                             }, label: {
                                 Text("Edit")
                             })
-                            .sheet(isPresented: $showImagePicker) {
+                            .sheet(isPresented: $showImagePicker, onDismiss: {
+                                if let image = selectedImage {
+                                    userVM.uploadProfileImage(image: image)
+                                }
+                            }) {
                                 ImagePicker(image: $selectedImage)
                             }
                         }
@@ -51,7 +53,7 @@ struct EditProfilePage: View {
                         .padding(.horizontal)
                         .padding(.top)
                     
-                    TextField("", text: $settingsVM.username)
+                    TextField("", text: $userVM.username)
                         .padding()
                 }
                 .background(Color.white)
@@ -62,10 +64,10 @@ struct EditProfilePage: View {
                     
                     NavigationLink(destination: {
                         StatusSelectorPage()
-                            .environmentObject(settingsVM)
+                            .environmentObject(userVM)
                     }, label: {
                         HStack {
-                            Text(settingsVM.currentStatus)
+                            Text(userVM.status)
                             Spacer()
                             Image(systemName: "chevron.right")
                                 .foregroundColor(.customDarkGray)
@@ -88,12 +90,11 @@ struct EditProfilePage: View {
 
 struct EditProfilePage_Previews: PreviewProvider {
     @StateObject static var settingsVM = SettingsViewModel()
-    @StateObject static var authVM = AuthViewModel()
     static var previews: some View {
         NavigationStack {
             EditProfilePage()
                 .environmentObject(settingsVM)
-                .environmentObject(authVM)
+                .environmentObject(UserViewModel.shared)
         }
     }
 }

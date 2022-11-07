@@ -64,7 +64,7 @@ struct RegistrationPage: View {
                 Loading(text: "新規登録中。。。")
             }
         }
-        .navigationDestination(isPresented: $authVM.didAuthUser) {
+        .navigationDestination(isPresented: $authVM.didRegister) {
             ProfilePhotoSelectorPage()
                 .environmentObject(router)
                 .environmentObject(authVM)

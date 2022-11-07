@@ -47,6 +47,7 @@
 		75D371AC2903B1E500DBB4CE /* ProfilePhotoSelectorPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D371AB2903B1E500DBB4CE /* ProfilePhotoSelectorPage.swift */; };
 		75D9E5E5290CE5A200BD0AD4 /* ConversationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D9E5E4290CE5A200BD0AD4 /* ConversationsViewModel.swift */; };
 		75D9E5E7290CEB5A00BD0AD4 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D9E5E6290CEB5A00BD0AD4 /* Loading.swift */; };
+		75D9E5E9290CF5E300BD0AD4 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D9E5E8290CF5E300BD0AD4 /* UserViewModel.swift */; };
 		75EE702E28F581E700246F35 /* ChatAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE702D28F581E700246F35 /* ChatAppApp.swift */; };
 		75EE703028F581E700246F35 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EE702F28F581E700246F35 /* ContentView.swift */; };
 		75EE703228F581E900246F35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75EE703128F581E900246F35 /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 		75D371AB2903B1E500DBB4CE /* ProfilePhotoSelectorPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorPage.swift; sourceTree = "<group>"; };
 		75D9E5E4290CE5A200BD0AD4 /* ConversationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsViewModel.swift; sourceTree = "<group>"; };
 		75D9E5E6290CEB5A00BD0AD4 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		75D9E5E8290CF5E300BD0AD4 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		75EE702A28F581E700246F35 /* ChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75EE702D28F581E700246F35 /* ChatAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAppApp.swift; sourceTree = "<group>"; };
 		75EE702F28F581E700246F35 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				75D3719A29036B8C00DBB4CE /* ChatViewModel.swift */,
 				75D371A9290392F300DBB4CE /* AuthViewModel.swift */,
 				75D9E5E4290CE5A200BD0AD4 /* ConversationsViewModel.swift */,
+				75D9E5E8290CF5E300BD0AD4 /* UserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				75D37195290363F800DBB4CE /* ChatBubble.swift in Sources */,
 				75B0811228FEB53F0079A504 /* ChannelsPage.swift in Sources */,
 				75B0811928FEB59A0079A504 /* ConversationsPage.swift in Sources */,
+				75D9E5E9290CF5E300BD0AD4 /* UserViewModel.swift in Sources */,
 				75D371AA290392F300DBB4CE /* AuthViewModel.swift in Sources */,
 				75EE704628F585B200246F35 /* Router.swift in Sources */,
 				75D3719D29036EBC00DBB4CE /* Message.swift in Sources */,

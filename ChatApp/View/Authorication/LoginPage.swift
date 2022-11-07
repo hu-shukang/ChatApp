@@ -79,7 +79,7 @@ struct LoginPage: View {
                 .environmentObject(authVM)
         }
         .navigationDestination(isPresented: $authVM.didAuthUser) {
-            MainTabPage()
+            return MainTabPage()
                 .environmentObject(router)
         }
     }

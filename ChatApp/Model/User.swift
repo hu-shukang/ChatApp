@@ -15,6 +15,7 @@ struct User: Identifiable, Decodable, Hashable {
     var fullname: String
     var email: String
     var profileImageUrl: String
+    var status: String
     
     init() {
         self.uid = ""
@@ -22,13 +23,8 @@ struct User: Identifiable, Decodable, Hashable {
         self.fullname = ""
         self.email = ""
         self.profileImageUrl = ""
-    }
-    
-    init(uid: String, username: String, fullname: String, email: String, profileImageUrl: String) {
-        self.uid = uid
-        self.username = username
-        self.fullname = fullname
-        self.email = email
-        self.profileImageUrl = profileImageUrl
+        self.status = statusList[0]
     }
 }
+
+let statusList: [String] = ["アクティブ", "忙しい", "学習中", "映画館", "仕事中", "ミーティング中", "休憩中"]

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ConversationsPage: View {
     @EnvironmentObject var router: Router
-    @EnvironmentObject var authVM: AuthViewModel
     @State private var showNewMessageSheet = false
     @State private var showChatPage = false
     
@@ -18,7 +17,7 @@ struct ConversationsPage: View {
             // MARK: - chats
             ScrollView {
                 VStack {
-                    ForEach(authVM.friends) { user in
+                    ForEach(UserViewModel.shared.friends) { user in
                         ConversationCell(user: user)
                             .onTapGesture {
                                 router.path.append(user)
@@ -44,7 +43,6 @@ struct ConversationsPage: View {
             .sheet(isPresented: $showNewMessageSheet) {
                 NewMessagePage(showChatsPage: $showChatPage)
                     .environmentObject(router)
-                    .environmentObject(authVM)
             }
         }
         .frame(maxWidth: .infinity)
@@ -60,7 +58,6 @@ struct ConversationsPage_Previews: PreviewProvider {
         NavigationStack(path: $router.path) {
             ConversationsPage()
                 .environmentObject(router)
-                .environmentObject(AuthViewModel())
         }
     }
 }

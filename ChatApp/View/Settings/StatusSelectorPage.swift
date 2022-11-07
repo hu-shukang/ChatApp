@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StatusSelectorPage: View {
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var userVM: UserViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -19,14 +19,15 @@ struct StatusSelectorPage: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     CategoryTitle(title: "CURRENTLY SET TO")
-                    Status(text: settingsVM.currentStatus)
+                    Status(text: userVM.status)
                     
                     CategoryTitle(title: "SELECT YOUR STATUS")
                     VStack(spacing: 1) {
-                        ForEach(settingsVM.status, id: \.self) { status in
+                        ForEach(statusList, id: \.self) { status in
                             Button(action: {
-                                settingsVM.currentStatus = status
-                                dismiss()
+                                userVM.updateStatus(status: status) {
+                                    dismiss()
+                                }
                             }, label: {
                                 Status(text: status)
                             })
@@ -57,7 +58,7 @@ struct StatusSelectorPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             StatusSelectorPage()
-                .environmentObject(settingsVM)
+                .environmentObject(UserViewModel.shared)
         }
     }
 }

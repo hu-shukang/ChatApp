@@ -50,7 +50,7 @@ struct ProfilePhotoSelectorPage: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationDestination(isPresented: $authVM.didUploadProfileImage) {
+        .navigationDestination(isPresented: $authVM.didAuthUser) {
             MainTabPage()
                 .environmentObject(router)
         }

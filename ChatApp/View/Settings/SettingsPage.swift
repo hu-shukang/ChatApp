@@ -9,18 +9,18 @@ import SwiftUI
 
 struct SettingsPage: View {
     @StateObject var settingsVM = SettingsViewModel()
-    @EnvironmentObject var authVM: AuthViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     var body: some View {
         VStack(spacing: 32) {
             NavigationLink(destination: {
                 EditProfilePage()
                     .environmentObject(settingsVM)
-                    .environmentObject(authVM)
+                    .environmentObject(userVM)
             }, label: {
                 SettingsHeader()
                     .environmentObject(settingsVM)
-                    .environmentObject(authVM)
+                    .environmentObject(userVM)
             })
             
             VStack(spacing: 0) {
@@ -38,7 +38,7 @@ struct SettingsPage: View {
             .background(.white)
         
             
-            Button(action: authVM.logout, label: {
+            Button(action: AuthViewModel.shared.logout, label: {
                 Text("Logout")
                     .foregroundColor(.red)
                     .font(.system(size: 16))
@@ -63,7 +63,7 @@ struct SettingsPage_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             SettingsPage()
-                .environmentObject(AuthViewModel())
+                .environmentObject(UserViewModel.shared)
                 .navigationTitle("Settings")
         }
     }
