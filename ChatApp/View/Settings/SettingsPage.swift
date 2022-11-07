@@ -17,9 +17,13 @@ struct SettingsPage: View {
                 EditProfilePage()
                     .environmentObject(settingsVM)
                     .environmentObject(userVM)
+                    .onDisappear {
+                        userVM.updateUsername(callback: {
+                            print("DEBUG: Success to update username")
+                        })
+                    }
             }, label: {
                 SettingsHeader()
-                    .environmentObject(settingsVM)
                     .environmentObject(userVM)
             })
             

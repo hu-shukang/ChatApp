@@ -9,18 +9,20 @@ import SwiftUI
 import Kingfisher
 
 struct SettingsHeader: View {
-    @EnvironmentObject var settingsVM: SettingsViewModel
+    @EnvironmentObject var userVM: UserViewModel
     
     var body: some View {
         HStack {
-            AvatorImage(url: AuthViewModel.shared.currentUser.profileImageUrl)
+            if let imageUrl = userVM.profileImageUrl {
+                AvatorImage(url: imageUrl)
+            }
             
             VStack(alignment: .leading, spacing: 4) {
-                Text(AuthViewModel.shared.currentUser.username)
+                Text(userVM.username)
                     .font(.system(size: 18))
                     .foregroundColor(.black)
                 
-                Text(settingsVM.currentStatus)
+                Text(userVM.status)
                     .foregroundColor(.customDarkGray)
                     .font(.system(size: 14))
             }
@@ -38,6 +40,6 @@ struct SettingsHeader_Previews: PreviewProvider {
     
     static var previews: some View {
         SettingsHeader()
-            .environmentObject(settingsVM)
+            .environmentObject(UserViewModel.shared)
     }
 }

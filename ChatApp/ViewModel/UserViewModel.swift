@@ -53,6 +53,20 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func updateUsername(callback: @escaping () -> Void) {
+        if username == currentUser?.username {
+            callback()
+            return
+        }
+        guard let uid = currentUser?.uid else { return }
+        let data = ["username": self.username]
+        COLLECTION_USERS.document(uid).updateData(data) { _ in
+            print("DEBUG: successfully to update username")
+            self.currentUser?.username = self.username
+            callback()
+        }
+    }
+    
     func uploadProfileImage(image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
         let filename = UUID().uuidString
