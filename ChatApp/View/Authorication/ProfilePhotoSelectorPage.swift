@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfilePhotoSelectorPage: View {
-    @StateObject var authVM = AuthViewModel.shared;
+    @StateObject var authVM = AuthViewModel.shared
+    @StateObject var router = Router.shared
     @State private var imagePickerPresented = false
     
     var body: some View {
@@ -31,7 +32,9 @@ struct ProfilePhotoSelectorPage: View {
                 
                 if authVM.selectedImage != nil {
                     Button(action: {
-                        authVM.uploadProfileImage()
+                        authVM.uploadProfileImage(callback: {
+                            router.path.append(MainTabRoute())
+                        })
                     }, label: {
                         Text("アップロード")
                             .font(.headline)
@@ -49,7 +52,7 @@ struct ProfilePhotoSelectorPage: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationDestination(isPresented: $authVM.didAuthUser) {
+        .navigationDestination(for: MainTabRoute.self) { _ in
             MainTabPage()
         }
     }

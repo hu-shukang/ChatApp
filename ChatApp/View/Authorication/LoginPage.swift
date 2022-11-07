@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LoginPage: View {
-    @StateObject var authVM = AuthViewModel.shared;
-    @State var gotoSignUp: Bool = false
+    @StateObject var authVM = AuthViewModel.shared
+    @StateObject var router = Router.shared
     
     var body: some View {
         ZStack {
@@ -31,7 +31,7 @@ struct LoginPage: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            gotoSignUp.toggle()
+                            router.path.append(ForgetPasswordRoute())
                         }, label: {
                             Text("パスワードお忘れ？")
                                 .font(.system(size: 13))
@@ -41,7 +41,9 @@ struct LoginPage: View {
                     }
                     
                     LargeButton(text: "ログイン", action: {
-                        authVM.login()
+                        authVM.login(callback: {
+                            router.path.append(MainTabRoute())
+                        })
                     })
                 }
                 .padding([.horizontal, .top], 32)
@@ -50,7 +52,7 @@ struct LoginPage: View {
                 
                 HStack {
                     Button(action: {
-                        gotoSignUp.toggle()
+                        router.path.append(SignUpRoute())
                     }, label: {
                         HStack(alignment: .center) {
                             Text("アカウントをお持ちではない?")
@@ -72,11 +74,15 @@ struct LoginPage: View {
                 Loading(text: "ログイン中。。。")
             }
         }
-        .navigationDestination(isPresented: $gotoSignUp) {
+        .navigationBarBackButtonHidden(true)
+        .navigationDestination(for: SignUpRoute.self) { _ in
             RegistrationPage()
         }
-        .navigationDestination(isPresented: $authVM.didAuthUser) {
-            return MainTabPage()
+        .navigationDestination(for: ForgetPasswordRoute.self) { _ in
+            Text("Forget Password")
+        }
+        .navigationDestination(for: MainTabRoute.self) { _ in
+            MainTabPage()
         }
     }
 }

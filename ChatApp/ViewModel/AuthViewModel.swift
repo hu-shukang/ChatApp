@@ -34,7 +34,7 @@ class AuthViewModel: ObservableObject {
         userSession = Auth.auth().currentUser
     }
     
-    func login() {
+    func login(callback: @escaping () -> Void) {
         waiting = true
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
@@ -45,10 +45,11 @@ class AuthViewModel: ObservableObject {
             self.resetInput()
             self.userSession = result?.user
             self.didAuthUser = true
+            callback()
         }
     }
     
-    func register() {
+    func register(callback: @escaping () -> Void) {
         waiting = true
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
@@ -64,11 +65,12 @@ class AuthViewModel: ObservableObject {
                 self.tempUser = user
                 self.didRegister = true
                 self.resetInput()
+                callback()
             }
         }
     }
     
-    func uploadProfileImage() {
+    func uploadProfileImage(callback: @escaping () -> Void) {
         waiting = true
         guard let image = self.selectedImage else { return }
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var router = Router()
+    @StateObject var router = Router.shared
     @StateObject var mainTabVM = MainTabViewModel()
     @StateObject var authVM = AuthViewModel.shared
     

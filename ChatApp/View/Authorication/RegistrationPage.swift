@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegistrationPage: View {
     @StateObject var authVM = AuthViewModel.shared;
-    @Environment(\.dismiss) var dismiss;
+    @StateObject var router = Router.shared
     
     var body: some View {
         ZStack {
@@ -31,7 +31,9 @@ struct RegistrationPage: View {
                     CustomTextField(text: $authVM.password, icon: "lock", placeholder: "パスワード", isSecure: true)
                     
                     LargeButton(text: "新規登録", action: {
-                        authVM.register()
+                        authVM.register(callback: {
+                            router.path.append(UploadProfileImageRoute())
+                        })
                     })
                 }
                 .padding([.horizontal, .top], 32)
@@ -40,7 +42,7 @@ struct RegistrationPage: View {
                 
                 HStack {
                     Button(action: {
-                        dismiss()
+                        router.path.removeLast()
                     }, label: {
                         HStack(alignment: .center) {
                             Text("アカウントを持っています?")
@@ -63,7 +65,8 @@ struct RegistrationPage: View {
                 Loading(text: "新規登録中。。。")
             }
         }
-        .navigationDestination(isPresented: $authVM.didRegister) {
+        .navigationBarBackButtonHidden(true)
+        .navigationDestination(for: UploadProfileImageRoute.self) { _ in
             ProfilePhotoSelectorPage()
         }
     }
