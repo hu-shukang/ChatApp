@@ -63,9 +63,9 @@ struct SettingsPage: View {
         }
         .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
-        .navigationDestination(isPresented: $logout) {
-            LoginPage()
-        }
+//        .navigationDestination(isPresented: $logout) {
+//            LoginPage()
+//        }
     }
 }
 

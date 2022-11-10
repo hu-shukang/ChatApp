@@ -9,45 +9,45 @@ import SwiftUI
 import Firebase
 
 class ChatViewModel: ObservableObject {
-    private let user: User
-    
     @Published var sendMessageText: String = ""
-    @Published var messages: [Message] = []
+    @Published var messageDic: Dictionary<String, [Message]> = [:]
     
-    init(to user: User) {
-        self.user = user
-        fetchMessages()
-    }
+    static let shared = ChatViewModel()
     
-    func fetchMessages() {
+    func fetchMessages(user: User) {
         guard let currentId = AuthViewModel.shared.userSession?.uid else { return }
-        guard let chatPartnerId = self.user.id else { return }
+        guard let chatPartnerId = user.id else { return }
         
         let query = COLLECTION_MESSAGES
             .document(currentId)
             .collection(chatPartnerId)
             .order(by: "timestamp", descending: false)
         
+        print("DEBUG: currentId = \(currentId)")
+        print("DEBUG: chatPartnerId = \(chatPartnerId)")
+        
         query.addSnapshotListener { snapshot, _ in
             guard let changes = snapshot?.documentChanges.filter({ $0.type == .added }) else { return }
             let newMessages = changes.compactMap { documentChanged in
                 try? documentChanged.document.data(as: Message.self)
             }
-            self.messages.append(contentsOf: newMessages)
+            var messages = self.messageDic[chatPartnerId] ?? []
+            messages.append(contentsOf: newMessages)
+            self.messageDic.updateValue(messages, forKey: chatPartnerId)
         }
         
         query.getDocuments { snapshot, error in
             guard let document = snapshot?.documents else { return }
-            self.messages = document.compactMap({ documentSnapshot in
+            let messages = document.compactMap({ documentSnapshot in
                 try? documentSnapshot.data(as: Message.self)
             })
-            print(self.messages)
+            self.messageDic.updateValue(messages, forKey: chatPartnerId)
         }
     }
     
-    func sendMessage() {
+    func sendMessage(user: User) {
         guard let currentId = AuthViewModel.shared.userSession?.uid else { return }
-        guard let chatPartnerId = self.user.id else { return }
+        guard let chatPartnerId = user.id else { return }
         
         let currentUserRef = COLLECTION_MESSAGES.document(currentId).collection(chatPartnerId).document()
         let chatPartnerRef = COLLECTION_MESSAGES.document(chatPartnerId).collection(currentId)

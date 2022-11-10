@@ -8,10 +8,13 @@
 import Foundation
 
 class MainTabViewModel: ObservableObject {
+    static let defaultTab: String = "conversations"
     @Published var selectedTab: String = "conversations"
     let tabTitles: Dictionary<String,String> = ["conversations": "Chats", "channels": "Channels", "settings": "Settings"]
     
     var tabTitle: String {
         return tabTitles[selectedTab] ?? "Chats"
     }
+    
+    static let shared = MainTabViewModel()
 }

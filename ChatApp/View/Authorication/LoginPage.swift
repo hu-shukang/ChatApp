@@ -42,7 +42,7 @@ struct LoginPage: View {
                     
                     LargeButton(text: "ログイン", action: {
                         authVM.login(callback: {
-                            router.path.append(MainTabRoute())
+//                            router.path.append(MainTabRoute())
                         })
                     })
                 }

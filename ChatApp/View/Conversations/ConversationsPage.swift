@@ -20,6 +20,7 @@ struct ConversationsPage: View {
                     ForEach(UserViewModel.shared.friends) { user in
                         ConversationCell(user: user)
                             .onTapGesture {
+                                print("DEBUG: tap ConversationCell")
                                 router.path.append(user)
                             }
                     }
@@ -52,9 +53,8 @@ struct ConversationsPage: View {
 }
 
 struct ConversationsPage_Previews: PreviewProvider {
-    @StateObject static var router = Router()
     static var previews: some View {
-        NavigationStack(path: $router.path) {
+        NavigationStack {
             ConversationsPage()
         }
     }

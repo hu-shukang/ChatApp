@@ -24,7 +24,7 @@ struct ChatMessage: View {
                         .clipShape(ChatBubble(isFromCurrentUser: message.isFromCurrentUser))
                         .foregroundColor(.white)
                     
-                    AvatorImage(url: AuthViewModel.shared.currentUser.profileImageUrl, size: 32)
+                    AvatorImage(url: UserViewModel.shared.profileImageUrl!, size: 32)
                 }
                 .padding(.trailing)
                 .padding(.leading, 80)

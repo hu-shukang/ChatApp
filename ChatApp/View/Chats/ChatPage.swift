@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ChatPage: View {
     var user: User
-    @ObservedObject var chatVM: ChatViewModel
+    @StateObject var chatVM = ChatViewModel.shared
     @FocusState var isEditing: Bool
+    
     
     init(user: User) {
         self.user = user
-        chatVM = ChatViewModel(to: user)
     }
     
     var body: some View {
@@ -22,7 +22,7 @@ struct ChatPage: View {
             // MARK: - messages
             ScrollView {
                 VStack(alignment: .leading, spacing: 12) {
-                    ForEach(chatVM.messages) { message in
+                    ForEach(chatVM.messageDic[user.uid] ?? []) { message in
                         ChatMessage(message: message, user: user)
                     }
                 }
@@ -32,9 +32,15 @@ struct ChatPage: View {
             }
             
             // MARK: - input
-            MessageInput(isEditing: $isEditing)
+            MessageInput(isEditing: $isEditing, user: user)
+                .environmentObject(chatVM)
             
         }
+        .onAppear(perform: {
+            if chatVM.messageDic[user.uid] == nil {
+                chatVM.fetchMessages(user: user)
+            }
+        })
         .navigationTitle(user.username)
         .navigationBarTitleDisplayMode(.inline)
     }

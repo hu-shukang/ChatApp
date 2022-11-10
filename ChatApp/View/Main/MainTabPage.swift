@@ -9,31 +9,40 @@ import SwiftUI
 
 struct MainTabPage: View {
     @StateObject var router = Router.shared
-    @StateObject var mainTabVM = MainTabViewModel()
+    @StateObject var mainTabVM = MainTabViewModel.shared
     @StateObject var userVM = UserViewModel.shared
     
     var body: some View {
         // MARK: - Tab View
-        TabView(selection: $mainTabVM.selectedTab) {
-            ConversationsPage()
-                .tabItem {
-                    Image(systemName: "bubble.left")
-                }
-                .tag("conversations")
+        Group {
+            if userVM.currentUser != nil {
+                TabView(selection: $mainTabVM.selectedTab) {
+                    ConversationsPage()
+                        .tabItem {
+                            Image(systemName: "bubble.left")
+                        }
+                        .tag("conversations")
 
-            ChannelsPage()
-                .tabItem {
-                    Image(systemName: "bubble.left.and.bubble.right")
-                }
-                .tag("channels")
+                    ChannelsPage()
+                        .tabItem {
+                            Image(systemName: "bubble.left.and.bubble.right")
+                        }
+                        .tag("channels")
 
-            SettingsPage()
-                .tabItem {
-                    Image(systemName: "gearshape.fill")
+                    SettingsPage()
+                        .tabItem {
+                            Image(systemName: "gearshape.fill")
+                        }
+                        .tag("settings")
                 }
-                .tag("settings")
+                .navigationTitle(mainTabVM.tabTitle)
+            } else {
+                Text("Loading")
+            }
         }
-        .navigationTitle(mainTabVM.tabTitle)
+        .onAppear {
+            userVM.load()
+        }
     }
 }
 

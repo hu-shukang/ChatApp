@@ -18,7 +18,16 @@ class UserViewModel: ObservableObject {
     
     static let shared = UserViewModel()
     
-    init() {
+    static func clear() {
+        shared.currentUser = nil
+        shared.friends = []
+        shared.username = ""
+        shared.status = statusList[0]
+        shared.profileImageUrl = ""
+    }
+    
+    func load() {
+        print("DEBUG: Load User And Load Friends")
         fetchUser()
         fetchFriends()
     }

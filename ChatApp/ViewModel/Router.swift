@@ -11,6 +11,18 @@ class Router: ObservableObject {
     @Published var path = NavigationPath()
     
     static let shared = Router()
+    
+    static func append(to routeInfo: RouteInfo) {
+        shared.path.append(routeInfo)
+    }
+    
+    static func back() {
+        shared.path.removeLast()
+    }
+    
+    static func backToBegin() {
+        shared.path.removeLast(shared.path.count)
+    }
 }
 
 class RouteInfo: Hashable {

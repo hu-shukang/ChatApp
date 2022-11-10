@@ -16,6 +16,6 @@ struct Message: Identifiable, Decodable {
     var timestamp: Timestamp
     
     var isFromCurrentUser: Bool {
-        fromId == AuthViewModel.shared.currentUser.id
+        fromId == UserViewModel.shared.currentUser?.uid
     }
 }

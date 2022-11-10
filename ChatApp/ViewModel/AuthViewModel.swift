@@ -13,10 +13,10 @@ import SwiftUI
 class AuthViewModel: ObservableObject {
     private var tempUser: FirebaseAuth.User?
     
-    @Published var email = ""
+    @Published var email = "abc@gmail.com"
     @Published var username = ""
     @Published var fullname = ""
-    @Published var password = ""
+    @Published var password = "123456"
     
     @Published var selectedImage: UIImage?
     @Published var didAuthUser = false
@@ -99,6 +99,9 @@ class AuthViewModel: ObservableObject {
     func logout(callback: @escaping () -> Void) {
         self.userSession = nil
         try? Auth.auth().signOut()
+        Router.backToBegin()
+        MainTabViewModel.shared.selectedTab = MainTabViewModel.defaultTab
+        UserViewModel.clear()
         callback()
     }
     
