@@ -35,11 +35,11 @@ struct MainTabPage: View {
                         }
                         .tag("settings")
                 }
-                .navigationTitle(mainTabVM.tabTitle)
             } else {
-                Text("Loading")
+                Loading(text: "データをローディング中。。。")
             }
         }
+        .navigationTitle(mainTabVM.tabTitle)
         .onAppear {
             userVM.load()
         }

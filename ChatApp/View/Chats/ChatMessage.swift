@@ -46,15 +46,3 @@ struct ChatMessage: View {
         }
     }
 }
-
-//struct ChatMessage_Previews: PreviewProvider {
-//    @StateObject static var chatVM = ChatViewModel()
-//    static var previews: some View {
-//        VStack {
-//            ChatMessage(message: .init(isFromCurrentUser: true, messageText: "Hello world"))
-//                .environmentObject(chatVM)
-//            ChatMessage(message: .init(isFromCurrentUser: false, messageText: "Hello"))
-//                .environmentObject(chatVM)
-//        }
-//    }
-//}

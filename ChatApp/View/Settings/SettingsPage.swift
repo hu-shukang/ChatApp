@@ -52,8 +52,12 @@ struct SettingsPage: View {
                     .fontWeight(.semibold)
                     .frame(height: 50)
                     .frame(maxWidth: .infinity)
-                    .background(Color.white)
+                    .background{
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.red, style: StrokeStyle(lineWidth: 1))
+                    }
             })
+            .padding()
             
             Spacer()
         }
@@ -61,11 +65,6 @@ struct SettingsPage: View {
             Color(.systemGroupedBackground)
                 .ignoresSafeArea()
         }
-        .toolbarBackground(Color(.systemGroupedBackground), for: .navigationBar)
-        .toolbarBackground(.visible, for: .navigationBar)
-//        .navigationDestination(isPresented: $logout) {
-//            LoginPage()
-//        }
     }
 }
 

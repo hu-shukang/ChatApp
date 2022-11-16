@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestoreSwift
+import Firebase
 
 struct User: Identifiable, Decodable, Hashable {
     @DocumentID var id: String?
@@ -16,6 +17,28 @@ struct User: Identifiable, Decodable, Hashable {
     var email: String
     var profileImageUrl: String
     var status: String
+    var recentMesssage: Message?
+    
+    var recentMessageContent: String {
+        return recentMesssage?.text ?? ""
+    }
+    
+    var recentMessageDate: String {
+        guard let date = recentMesssage?.timestamp.dateValue() else {
+            return ""
+        }
+        let df = DateFormatter()
+        let calendar = Calendar.current
+        if calendar.isDateInToday(date) {
+            df.dateFormat = "今日 hh:mm"
+        } else if calendar.isDateInYesterday(date) {
+            df.dateFormat = "昨日 hh:mm"
+        } else {
+            df.dateFormat = "yyyy/MM/dd"
+        }
+        
+        return df.string(from: date)
+    }
     
     init() {
         self.uid = ""
@@ -24,6 +47,16 @@ struct User: Identifiable, Decodable, Hashable {
         self.email = ""
         self.profileImageUrl = ""
         self.status = statusList[0]
+    }
+    
+    init(uid: String, username: String, fullname: String, email: String, profileImageUrl: String, status: String, recentMesssage: Message?) {
+        self.uid = uid
+        self.username = username
+        self.fullname = fullname
+        self.email = email
+        self.profileImageUrl = profileImageUrl
+        self.status = status
+        self.recentMesssage = recentMesssage
     }
 }
 

@@ -19,6 +19,7 @@ struct ConversationsPage: View {
                 VStack {
                     ForEach(UserViewModel.shared.friends) { user in
                         ConversationCell(user: user)
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 print("DEBUG: tap ConversationCell")
                                 router.path.append(user)

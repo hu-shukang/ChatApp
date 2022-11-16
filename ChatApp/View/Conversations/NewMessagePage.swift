@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewMessagePage: View {
-    @StateObject var authVM = AuthViewModel.shared
+    @StateObject var userVM = UserViewModel.shared
     @StateObject var router = Router.shared
     @Binding var showChatsPage: Bool
     @Environment(\.dismiss) var dismiss
@@ -20,7 +20,7 @@ struct NewMessagePage: View {
                 .padding()
             
             VStack(alignment: .leading) {
-                ForEach(authVM.friends) { user in
+                ForEach(userVM.friends) { user in
                     Button(action: {
                         showChatsPage.toggle()
                         router.path.append(user)

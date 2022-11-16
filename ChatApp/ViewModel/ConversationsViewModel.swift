@@ -10,9 +10,7 @@ import SwiftUI
 class ConversationsViewModel: ObservableObject {
     @Published var recentMessages = [Message]()
     
-    init() {
-        fetchRecentMessages()
-    }
+    static let shared = ConversationsViewModel()
     
     func fetchRecentMessages() {
         guard let uid = AuthViewModel.shared.userSession?.uid else { return }
