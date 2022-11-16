@@ -62,29 +62,4 @@ class ChatViewModel: ObservableObject {
         
         sendMessageText = ""
     }
-    
-    func fetchRecentMessage() {
-        print("DEBUG: start fetchRecentMessage")
-        guard let currentId = AuthViewModel.shared.userSession?.uid else { return }
-        let query = COLLECTION_MESSAGES
-            .document(currentId)
-            .collection("recent-messages")
-            .order(by: "timestamp", descending: true)
-        
-        query.addSnapshotListener { snapshot, _ in
-            guard let changes = snapshot?.documentChanges.filter({ $0.type == .added }) else { return }
-            let newMessages = changes.compactMap { documentChanged in
-                try? documentChanged.document.data(as: Message.self)
-            }
-            UserViewModel.shared.setRecentMessage(messages: newMessages)
-        }
-        
-        query.getDocuments { snapshot, error in
-            guard let document = snapshot?.documents else { return }
-            let messages = document.compactMap({ documentSnapshot in
-                try? documentSnapshot.data(as: Message.self)
-            })
-            UserViewModel.shared.setRecentMessage(messages: messages)
-        }
-    }
 }

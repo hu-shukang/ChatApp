@@ -49,7 +49,6 @@ class UserViewModel: ObservableObject {
         COLLECTION_USERS.whereField("uid", isNotEqualTo: uid).getDocuments { snapshot, _ in
             guard let documents = snapshot?.documents else { return }
             self.friends = documents.compactMap({ try? $0.data(as: User.self) })
-            ChatViewModel.shared.fetchRecentMessage()
         }
     }
     
@@ -96,29 +95,5 @@ class UserViewModel: ObservableObject {
                 }
             }
         }
-    }
-    
-    func setRecentMessage(messages: [Message]) {
-        print("DEBUG: setRecentMessage")
-        var newFriends = self.friends
-        self.friends = []
-        for message in messages {
-            let chatPartnerId = message.id
-            let index = newFriends.firstIndex { user in
-                return user.id == chatPartnerId
-            }
-            if let i = index {
-                newFriends[i].recentMesssage = message
-            }
-        }
-        self.friends = newFriends.sorted(by: { user1, user2 in
-            guard let m1 = user1.recentMesssage else {
-                return false
-            }
-            guard let m2 = user2.recentMesssage else {
-                return true
-            }
-            return m1.timestamp.dateValue() > m2.timestamp.dateValue()
-        })
     }
 }

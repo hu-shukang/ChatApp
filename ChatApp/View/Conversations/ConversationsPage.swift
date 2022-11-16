@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ConversationsPage: View {
-    @StateObject var router = Router.shared
+    @StateObject var conversationVM = ConversationsViewModel.shared
+    @StateObject var userVM = UserViewModel.shared
     @State private var showNewMessageSheet = false
     @State private var showChatPage = false
     
@@ -17,13 +18,8 @@ struct ConversationsPage: View {
             // MARK: - chats
             ScrollView {
                 VStack {
-                    ForEach(UserViewModel.shared.friends) { user in
-                        ConversationCell(user: user)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                print("DEBUG: tap ConversationCell")
-                                router.path.append(user)
-                            }
+                    ForEach(conversationVM.recentMessages) { msg in
+                        ConversationCell(messageVM: MessageViewModel(msg))
                     }
                 }
             }
@@ -46,10 +42,14 @@ struct ConversationsPage: View {
                 NewMessagePage(showChatsPage: $showChatPage)
             }
         }
+        .onAppear {
+            conversationVM.fetchRecentMessages()
+        }
         .frame(maxWidth: .infinity)
         .navigationDestination(for: User.self) { user in
             ChatPage(user: user)
         }
+        
     }
 }
 

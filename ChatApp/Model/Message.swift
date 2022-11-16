@@ -26,4 +26,19 @@ struct Message: Identifiable, Decodable, Hashable {
         self.text = text
         self.timestamp = timestamp
     }
+    
+    var date: String {
+        let date = timestamp.dateValue()
+        let df = DateFormatter()
+        let calendar = Calendar.current
+        if calendar.isDateInToday(date) {
+            df.dateFormat = "今日 hh:mm"
+        } else if calendar.isDateInYesterday(date) {
+            df.dateFormat = "昨日 hh:mm"
+        } else {
+            df.dateFormat = "yyyy/MM/dd"
+        }
+        
+        return df.string(from: date)
+    }
 }
