@@ -23,12 +23,6 @@ struct MainTabPage: View {
                         }
                         .tag("conversations")
 
-                    ChannelsPage()
-                        .tabItem {
-                            Image(systemName: "bubble.left.and.bubble.right")
-                        }
-                        .tag("channels")
-
                     SettingsPage()
                         .tabItem {
                             Image(systemName: "gearshape.fill")

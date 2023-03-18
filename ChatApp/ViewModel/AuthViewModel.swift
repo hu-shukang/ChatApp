@@ -91,6 +91,7 @@ class AuthViewModel: ObservableObject {
                     self.waiting = false
                     self.didAuthUser = true
                     print("didAuthUser: \(self.didAuthUser)")
+                    callback()
                 }
             }
         }

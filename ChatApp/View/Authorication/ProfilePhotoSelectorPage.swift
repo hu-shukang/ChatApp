@@ -33,7 +33,7 @@ struct ProfilePhotoSelectorPage: View {
                 if authVM.selectedImage != nil {
                     Button(action: {
                         authVM.uploadProfileImage(callback: {
-                            router.path.append(MainTabRoute())
+                            router.path.removeLast(router.path.count)
                         })
                     }, label: {
                         Text("アップロード")
